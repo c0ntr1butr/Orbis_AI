@@ -114,7 +114,7 @@ const cases = [
       "Call-offs moved faster than labor planning. Overtime and idle time both spiked.",
     result:
       "Predicted demand vs. certified heads let planners load cells before the EDI file aged.",
-    service: { href: "/services/decision-loop", label: "Signals to decisions" },
+    service: { href: "/services/workforce", label: "Workforce" },
     beforePct: 40,
     afterPct: 82,
     beforeLabel: "OT + idle spike",

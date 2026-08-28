@@ -1,66 +1,18 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  BookOpen,
-  Cpu,
-  Plug,
-  Shield,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { asset } from "@/lib/asset";
 import { LiveSnapshot, TrustBadges } from "@/components/live-snapshot";
 import { ActivityFeed } from "@/components/live-floor";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
-import { PlatformWireframe, SignalFlowDiagram } from "@/components/diagrams";
+import { CopilotPreview } from "@/components/module-widgets";
+import { modules, platformCapabilities } from "@/lib/services";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const features = [
-  {
-    icon: Cpu,
-    title: "AI-native by design",
-    copy: "Copilot sits on live plant data — not a slide deck bolted onto yesterday’s reports.",
-    href: "/services/copilot",
-    link: "Factory AI Copilot",
-  },
-  {
-    icon: Shield,
-    title: "Secure. Enterprise-ready",
-    copy: "Role-based access, encrypted transit, and plant-level tenancy from the first pilot cell.",
-    href: "/contact",
-    link: "Talk security",
-  },
-  {
-    icon: Plug,
-    title: "Connect your factory",
-    copy: "MES, WMS, time & attendance, and PLC historians through API-ready connectors.",
-    href: "/services/integrations",
-    link: "Integrations",
-  },
-  {
-    icon: BookOpen,
-    title: "Industry playbooks",
-    copy: "Automotive, rail, electronics, and tier-1 playbooks that FactoryOS was built to run.",
-    href: "/use-cases",
-    link: "Use cases",
-  },
-];
-
-const transformations = [
-  {
-    before: "OTIF discovered in the morning meeting",
-    after: "Orders-at-risk scored live on Line 3, with kits and skills attached",
-  },
-  {
-    before: "Crew fill in a separate HR extract",
-    after: "Certified heads mapped to the same cells as OEE and downtime",
-  },
-  {
-    before: "Why is the line behind? emailed after the shift",
-    after: "Copilot answers from plant state: 18 latch kits short, two operators to move",
-  },
-];
+const copilot = modules.find((m) => m.signature)!;
+const gridModules = modules.filter((m) => !m.signature);
 
 export default function HomePage() {
   return (
@@ -86,10 +38,9 @@ export default function HomePage() {
               for a factory this alive.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
-              Robots already weld. AGVs already move. FactoryOS is what sells
-              the next shift: live OTIF, crew fill, downtime, and a Copilot that
-              tells supervisors which kit and which certified operator recover
-              the order — before the dock closes.
+              One platform, ten live modules, and an AI Copilot that tells
+              supervisors which kit and which certified operator recover the
+              order — before the dock closes.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
@@ -125,9 +76,9 @@ export default function HomePage() {
       <section className="border-y border-white/8 bg-[#0c0d16]">
         <div className="mx-auto grid max-w-6xl gap-8 divide-y divide-white/8 px-4 py-10 sm:grid-cols-4 sm:divide-x sm:divide-y-0 sm:px-6">
           {[
-            { n: 6, suffix: " / 11", label: "at-risk orders recovered in-shift" },
+            { n: 10, suffix: "", label: "live modules on one plant model" },
             { n: 92, suffix: "%", label: "crew fill vs certified need" },
-            { n: 4, suffix: " hrs", label: "earlier fill-rate risk signal" },
+            { n: 30, suffix: "s", label: "for Copilot to answer, sourced" },
             { n: 30, suffix: " min", label: "to a working plant demo" },
           ].map((stat) => (
             <div key={stat.label} className="pt-8 text-center first:pt-0 sm:px-6 sm:pt-0 sm:text-left sm:first:pl-0">
@@ -140,137 +91,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-y border-white/5">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: `url(${asset("/images/factory-transform.jpg")})` }}
-        />
-        <div className="absolute inset-0 bg-[#07080d]/88" />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <Reveal>
-            <p className="text-sm font-medium tracking-wide text-primary uppercase">
-              How FactoryOS transforms operations
-            </p>
-            <h2 className="mt-2 max-w-3xl text-3xl font-semibold text-white">
-              From isolated machines and spreadsheets to one live plant decision
-              loop
-            </h2>
-            <p className="mt-4 max-w-2xl text-zinc-400">
-              The floor already has robots, tablets, and a control room. The
-              gap is a shared model of production and workforce — and an AI
-              layer that turns that model into the next action.
-            </p>
-          </Reveal>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {transformations.map((item, index) => (
-              <Reveal key={item.after} delay={index * 90}>
-                <article className="card-lift surface h-full p-6">
-                  <span className="font-mono text-xs text-zinc-600">0{index + 1}</span>
-                  <p className="mt-4 text-[11px] font-semibold tracking-wide text-zinc-500 uppercase">
-                    Before FactoryOS
-                  </p>
-                  <p className="mt-2 text-sm text-zinc-400">{item.before}</p>
-                  <div className="my-4 h-px bg-gradient-to-r from-primary/80 to-transparent" />
-                  <p className="text-[11px] font-semibold tracking-wide text-primary uppercase">
-                    With FactoryOS
-                  </p>
-                  <p className="mt-2 text-sm text-zinc-100">{item.after}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#0a0b12] py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Reveal>
-            <p className="kicker">Why now</p>
-            <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              Why operations leaders book FactoryOS this quarter
-            </h2>
-          </Reveal>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {[
-              {
-                title: "It sells itself on the floor",
-                copy: "A live snapshot beats a 40-slide deck. Supervisors watch OTIF and crew fill move while Copilot names the kit and the certified operator.",
-              },
-              {
-                title: "One model, not two war rooms",
-                copy: "Material shortage and workforce gap land on the same ticket. That is the pitch: stop splitting production and people into two tools.",
-              },
-              {
-                title: "Pilot without a data lake",
-                copy: "One line, one MES feed, one attendance source. Two to four weeks to recovered-order proof you can take to the plant manager.",
-              },
-            ].map((item, index) => (
-              <Reveal key={item.title} delay={index * 80}>
-                <article className="card-lift surface h-full p-6">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-primary/10 font-mono text-sm text-primary">
-                    {index + 1}
-                  </span>
-                  <h3 className="mt-4 text-base font-semibold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">{item.copy}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/8 bg-[#0a0b12] py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Reveal>
-            <p className="kicker justify-center">From signals to decisions to measurable value</p>
-            <h2 className="mx-auto mt-2 max-w-2xl text-center text-3xl font-semibold tracking-tight text-white">
-              How FactoryOS runs every shift
-            </h2>
-          </Reveal>
-          <div className="mt-12">
-            <SignalFlowDiagram />
-          </div>
-        </div>
-      </section>
-
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
-            <p className="kicker">Platform</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white">
-              Industry standard modules and KPIs
-            </h2>
-            <p className="mt-3 max-w-2xl text-zinc-400">
-              Production, workforce, Copilot, and a closed detect-to-measure loop —
-              scored on OTIF, OEE, fill-rate, recovered orders, and payback versus
-              missed docks.
-            </p>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <div className="mt-10">
-              <PlatformWireframe />
-              <div className="mt-5 flex flex-wrap gap-2">
-                {[
-                  { href: "/services/production", label: "Production Intelligence" },
-                  { href: "/services/workforce", label: "Workforce Intelligence" },
-                  { href: "/services/copilot", label: "Factory AI Copilot" },
-                ].map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-zinc-300 transition-colors hover:border-primary/40 hover:text-white"
-                  >
-                    {link.label} →
-                  </Link>
-                ))}
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="kicker">Product</p>
+                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white">
+                  One platform, ten live modules
+                </h2>
               </div>
+              <Link href="/services" className="text-sm font-medium text-primary hover:underline">
+                View all modules →
+              </Link>
             </div>
           </Reveal>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {gridModules.map((module, index) => (
+              <Reveal key={module.slug} delay={index * 50}>
+                <Link href={module.href} className="card-lift surface flex h-full flex-col p-5">
+                  <div className="flex items-start justify-between">
+                    <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/25 to-primary/5">
+                      <module.icon className="size-4.5 text-primary" />
+                    </span>
+                    <span className="font-mono text-[11px] text-zinc-600">{module.number}</span>
+                  </div>
+                  <h3 className="mt-3 text-sm font-semibold text-white">{module.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">{module.oneLiner}</p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="overflow-hidden border-y border-white/8 bg-[#0a0b12] py-10">
+      <section className="relative overflow-hidden border-y border-white/8 bg-[#0a0b12] py-16 sm:py-20">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(227,30,36,0.14),transparent_55%)]" />
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+          <Reveal>
+            <span className="kicker rounded-full border border-primary/25 bg-primary/8 px-3 py-1">
+              <copilot.icon className="size-3.5" />
+              {copilot.kicker}
+            </span>
+            <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              {copilot.oneLiner}
+            </h2>
+            <p className="mt-3 max-w-2xl text-zinc-400">{copilot.pitch}</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="surface mt-8 p-5 sm:p-6">
+              <CopilotPreview />
+            </div>
+          </Reveal>
+          <div className="mt-8 flex flex-wrap items-center gap-8">
+            {copilot.stats.map((stat) => (
+              <div key={stat.label}>
+                <p className="text-2xl font-semibold text-white">{stat.value}</p>
+                <p className="mt-0.5 text-xs text-zinc-500">{stat.label}</p>
+              </div>
+            ))}
+            <Link
+              href={copilot.href}
+              className="ml-auto text-sm font-medium text-primary hover:underline"
+            >
+              Meet the full Copilot →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden py-10">
         <p className="mb-5 text-center text-sm font-medium text-zinc-500">
           Built for plants that cannot miss a customer dock
         </p>
@@ -297,32 +187,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section className="border-y border-white/8 bg-[#0c0d16] py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
-            <p className="kicker">Built for the plant</p>
-            <h2 className="mt-2 max-w-2xl text-3xl font-semibold tracking-tight text-white">
-              Why FactoryOS is the layer, not another dashboard
+            <p className="kicker">Present on every module</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              One connected platform, not ten separate tools
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => (
-              <Reveal key={feature.title} delay={index * 80}>
-                <article className="card-lift surface flex h-full flex-col p-6">
-                  <span className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
-                    <feature.icon className="size-5 text-primary" />
-                  </span>
-                  <h3 className="mt-5 text-base font-semibold text-white">{feature.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
-                    {feature.copy}
-                  </p>
-                  <Link
-                    href={feature.href}
-                    className="mt-5 text-sm font-medium text-primary hover:underline"
-                  >
-                    {feature.link} →
-                  </Link>
-                </article>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {platformCapabilities.map((cap, index) => (
+              <Reveal key={cap.title} delay={index * 70}>
+                <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
+                  <cap.icon className="size-4 text-primary" />
+                  <h3 className="mt-3 text-sm font-semibold text-white">{cap.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">{cap.copy}</p>
+                </div>
               </Reveal>
             ))}
           </div>

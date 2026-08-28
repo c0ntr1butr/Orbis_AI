@@ -1,11 +1,13 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
 
 import { CtaBand, PageBanner } from "@/components/page-banner";
 import { KpiTiles } from "@/components/kpi-tiles";
-import { services } from "@/lib/services";
+import { ModuleDiagram } from "@/components/module-widgets";
+import { modules } from "@/lib/services";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+const bannerImages = ["/images/factory-operations.jpg", "/images/factory-transform.jpg", "/images/factory-hero.jpg"];
 
 export function ServiceSubnav({ current }: { current: string }) {
   return (
@@ -20,20 +22,20 @@ export function ServiceSubnav({ current }: { current: string }) {
               : "text-zinc-400 hover:bg-white/5 hover:text-white"
           )}
         >
-          All services
+          All modules
         </Link>
-        {services.map((service) => (
+        {modules.map((module) => (
           <Link
-            key={service.slug}
-            href={service.href}
+            key={module.slug}
+            href={module.href}
             className={cn(
               "shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
-              current === service.slug
+              current === module.slug
                 ? "bg-primary text-white"
                 : "text-zinc-400 hover:bg-white/5 hover:text-white"
             )}
           >
-            {service.title}
+            {module.title}
           </Link>
         ))}
       </div>
@@ -41,37 +43,41 @@ export function ServiceSubnav({ current }: { current: string }) {
   );
 }
 
-export function ServiceLayout({
-  slug,
-  title,
-  copy,
-  image,
-  diagram,
-  children,
-}: {
-  slug: string;
-  title: string;
-  copy: string;
-  image: string;
-  diagram: ReactNode;
-  children: ReactNode;
-}) {
-  const meta = services.find((s) => s.slug === slug);
+export function ServiceLayout({ slug }: { slug: string }) {
+  const index = modules.findIndex((m) => m.slug === slug);
+  const module = modules[index];
+  if (!module) return null;
+
   return (
     <div>
-      <PageBanner kicker={meta?.kicker ?? "Services"} title={title} copy={copy} image={image} />
+      <PageBanner
+        kicker={`Module ${module.number} / 10 · ${module.kicker}`}
+        title={module.title}
+        copy={module.pitch}
+        image={bannerImages[index % bannerImages.length]}
+      />
       <ServiceSubnav current={slug} />
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        {meta?.kpis && (
-          <div className="mb-10">
-            <p className="kicker">Operational KPIs → ROI</p>
-            <div className="mt-4">
-              <KpiTiles items={[...meta.kpis]} />
-            </div>
+        <div className="mb-10">
+          <p className="kicker">Operational KPIs → ROI</p>
+          <div className="mt-4">
+            <KpiTiles items={module.kpis} />
           </div>
-        )}
-        <div className="surface p-4 sm:p-6">{diagram}</div>
-        <div className="mt-10">{children}</div>
+        </div>
+        <div className="surface p-4 sm:p-6">
+          <ModuleDiagram widget={module.widget} />
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {module.highlights.map((item) => (
+            <article key={item.title} className="card-lift surface p-5">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
+                <item.icon className="size-5 text-primary" />
+              </span>
+              <h2 className="mt-3 font-semibold text-white">{item.title}</h2>
+              <p className="mt-2 text-sm text-zinc-400">{item.copy}</p>
+            </article>
+          ))}
+        </div>
         <Link
           href="/request-demo"
           className={cn(

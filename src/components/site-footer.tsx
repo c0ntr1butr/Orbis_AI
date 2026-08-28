@@ -2,14 +2,11 @@ import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
+import { modules } from "@/lib/services";
 
 const productLinks = [
-  { href: "/services", label: "All services" },
-  { href: "/services/production", label: "Production Intelligence" },
-  { href: "/services/workforce", label: "Workforce Intelligence" },
-  { href: "/services/copilot", label: "Factory AI Copilot" },
-  { href: "/services/decision-loop", label: "Signals to decisions" },
-  { href: "/services/integrations", label: "Connect your factory" },
+  { href: "/services", label: "All 10 modules" },
+  ...modules.slice(0, 5).map((m) => ({ href: m.href, label: m.title })),
 ];
 
 const companyLinks = [
