@@ -155,22 +155,22 @@ export default function UseCasesPage() {
         image="/images/factory-transform.jpg"
       />
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <p className="mb-3 text-xs font-semibold tracking-wider text-zinc-500 uppercase">
-          Captured results across these plants
-        </p>
-        <KpiTiles items={portfolio} />
+        <p className="kicker">Captured results across these plants</p>
+        <div className="mt-4">
+          <KpiTiles items={portfolio} />
+        </div>
 
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-10 flex flex-wrap gap-2">
           {filters.map((item) => (
             <button
               key={item}
               type="button"
               onClick={() => setFilter(item)}
               className={cn(
-                "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
+                "rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors",
                 filter === item
                   ? "border-primary bg-primary text-white"
-                  : "border-white/15 text-zinc-400 hover:border-white/30 hover:text-white"
+                  : "border-white/12 text-zinc-400 hover:border-white/30 hover:text-white"
               )}
             >
               {item}
@@ -187,7 +187,7 @@ export default function UseCasesPage() {
             {visible.map((item) => (
               <article
                 key={item.title}
-                className="tile-glow rounded-2xl border border-white/10 bg-[#101119] p-5"
+                className="card-lift surface p-5"
               >
                 <p className="text-xs font-semibold tracking-wide text-primary uppercase">
                   {item.industry}
@@ -249,11 +249,12 @@ export default function UseCasesPage() {
           </div>
         )}
 
-        <div className="mt-12 rounded-2xl border border-primary/25 bg-primary/5 p-6 text-center sm:p-8">
-          <h2 className="text-2xl font-semibold text-white">
+        <div className="relative mt-14 overflow-hidden rounded-3xl border border-primary/20 bg-primary/5 p-6 text-center sm:p-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.14),transparent_65%)]" />
+          <h2 className="relative text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             Bring your line. We will put these figures on it.
           </h2>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-zinc-400">
+          <p className="relative mx-auto mt-2 max-w-xl text-sm text-zinc-400">
             A working session on OTIF, fill, downtime, and Copilot — the same KPIs on this page,
             mapped to your cells.
           </p>
@@ -261,7 +262,7 @@ export default function UseCasesPage() {
             href="/request-demo"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "mt-6 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold glow-cta"
+              "glow-cta relative mt-6 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold"
             )}
           >
             Walk through your use case

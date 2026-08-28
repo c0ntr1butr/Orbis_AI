@@ -10,7 +10,7 @@ export default function CopilotServicePage() {
       copy="Ask why production is behind. Copilot answers from plant state — material shortages and workforce gaps on the same ticket — so the recommendation is sourced, not generic."
       image="/images/factory-operations.jpg"
       diagram={
-        <div className="mx-auto max-w-lg rounded-2xl border border-white/10 bg-[#101119] p-5">
+        <div className="surface mx-auto max-w-lg p-5">
           <p className="text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">
             Factory AI Copilot
           </p>
@@ -41,8 +41,10 @@ export default function CopilotServicePage() {
             copy: "Every reply cites the signals it used so plant leadership can audit the AI layer.",
           },
         ].map((item) => (
-          <article key={item.title} className="rounded-2xl border border-white/10 bg-[#101119] p-5">
-            <item.icon className="size-5 text-primary" />
+          <article key={item.title} className="card-lift surface p-5">
+            <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
+              <item.icon className="size-5 text-primary" />
+            </span>
             <h2 className="mt-3 font-semibold text-white">{item.title}</h2>
             <p className="mt-2 text-sm text-zinc-400">{item.copy}</p>
           </article>

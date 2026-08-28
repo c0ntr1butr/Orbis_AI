@@ -27,7 +27,7 @@ export default function MeasurementPage() {
           ["Recovered hours", "Downtime avoided when skill coverage moved at yellow, not red."],
           ["Fill-rate delta", "Certified coverage vs need, before and after the recommendation."],
         ].map(([title, copy]) => (
-          <article key={title} className="rounded-2xl border border-white/10 bg-[#101119] p-5">
+          <article key={title} className="card-lift surface p-5">
             <h2 className="font-semibold text-white">{title}</h2>
             <p className="mt-2 text-sm text-zinc-400">{copy}</p>
           </article>

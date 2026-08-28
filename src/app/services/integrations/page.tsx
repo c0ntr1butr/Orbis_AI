@@ -11,13 +11,13 @@ export default function IntegrationsPage() {
       diagram={<IntegrationDiagram />}
     >
       <div className="grid gap-4 md:grid-cols-2">
-        <article className="rounded-2xl border border-white/10 bg-[#101119] p-5">
+        <article className="card-lift surface p-5">
           <h2 className="font-semibold text-white">What we connect first</h2>
           <p className="mt-2 text-sm leading-relaxed text-zinc-400">
             One MES feed for the pilot cell, one attendance or T&A source, and material status from WMS or kit lists. Historians join when downtime needs machine context.
           </p>
         </article>
-        <article className="rounded-2xl border border-white/10 bg-[#101119] p-5">
+        <article className="card-lift surface p-5">
           <h2 className="font-semibold text-white">What you do not need</h2>
           <p className="mt-2 text-sm leading-relaxed text-zinc-400">
             A finished data lake, a new historian, or a plant-wide cutover. FactoryOS is the intelligence layer on systems you already run.

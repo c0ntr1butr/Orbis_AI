@@ -20,7 +20,7 @@ export default function WorkforceServicePage() {
               { label: "Certified coverage", value: "Cell 4 yellow" },
               { label: "Reassign ready", value: "2 operators" },
             ].map((item) => (
-              <div key={item.label} className="rounded-xl border border-white/10 p-4">
+              <div key={item.label} className="rounded-xl border border-white/8 bg-white/[0.03] p-4">
                 <p className="text-xs text-zinc-500">{item.label}</p>
                 <p className="mt-1 text-lg font-semibold text-white">{item.value}</p>
               </div>
@@ -47,8 +47,10 @@ export default function WorkforceServicePage() {
             copy: "Changeovers and second-shift gaps surface hours before the line actually waits.",
           },
         ].map((item) => (
-          <article key={item.title} className="rounded-2xl border border-white/10 bg-[#101119] p-5">
-            <item.icon className="size-5 text-primary" />
+          <article key={item.title} className="card-lift surface p-5">
+            <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
+              <item.icon className="size-5 text-primary" />
+            </span>
             <h2 className="mt-3 font-semibold text-white">{item.title}</h2>
             <p className="mt-2 text-sm text-zinc-400">{item.copy}</p>
           </article>

@@ -119,6 +119,15 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(ellipse 70% 45% at 15% -10%, rgb(227 30 36 / 12%), transparent 60%),
+      radial-gradient(ellipse 55% 40% at 100% 0%, rgb(255 255 255 / 5%), transparent 60%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: rgb(227 30 36 / 35%);
+    color: #fff;
   }
 }
 
@@ -137,6 +146,29 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+@utility kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+@utility surface {
+  background: linear-gradient(180deg, rgb(255 255 255 / 5%), rgb(255 255 255 / 1.5%));
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: var(--radius-2xl);
+}
+
+@utility bg-dot-grid {
+  background-image: radial-gradient(rgb(255 255 255 / 14%) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 30%, black 40%, transparent 90%);
 }
 
 @keyframes kenburns {
@@ -186,7 +218,13 @@
 }
 
 .card-lift {
-  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  border-color: rgb(255 255 255 / 22%);
+  box-shadow: 0 26px 60px rgb(0 0 0 / 40%);
 }
 
 @keyframes marquee {
@@ -256,18 +294,14 @@
   box-shadow: 0 16px 40px rgb(227 30 36 / 18%);
 }
 
-@keyframes cta-glow {
-  0%,
-  100% {
-    box-shadow: 0 8px 24px rgb(227 30 36 / 32%);
-  }
-  50% {
-    box-shadow: 0 8px 36px rgb(227 30 36 / 62%);
-  }
+.glow-cta {
+  box-shadow: 0 8px 24px rgb(227 30 36 / 30%);
+  transition: box-shadow 0.35s ease, transform 0.35s ease, filter 0.35s ease;
 }
 
-.glow-cta {
-  animation: cta-glow 2.4s ease-in-out infinite;
+.glow-cta:hover {
+  box-shadow: 0 16px 44px rgb(227 30 36 / 50%);
+  transform: translateY(-2px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -277,9 +311,12 @@
   .circuit-pulse,
   .marquee,
   .spark-draw,
-  .glow-cta,
   .kpi-pop,
   .bar-grow {
     animation: none;
+  }
+  .card-lift:hover,
+  .glow-cta:hover {
+    transform: none;
   }
 }

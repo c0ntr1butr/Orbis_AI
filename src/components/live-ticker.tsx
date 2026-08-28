@@ -18,7 +18,7 @@ export function LiveTicker() {
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#0b0c12] to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#0b0c12] to-transparent" />
       <div className="flex items-center gap-3 py-2">
-        <span className="relative ml-4 shrink-0 rounded-full border border-live/40 bg-live/15 px-2 py-0.5 text-[10px] font-bold tracking-wider text-live uppercase">
+        <span className="relative z-20 ml-4 shrink-0 rounded-full border border-live/40 bg-[#0b0c12] px-2 py-0.5 text-[10px] font-bold tracking-wider text-live uppercase">
           Live
         </span>
         <div className="marquee flex min-w-max gap-10 pr-10 text-[12px] text-zinc-300">

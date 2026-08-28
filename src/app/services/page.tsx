@@ -37,15 +37,17 @@ export default function ServicesPage() {
             <Reveal key={service.slug} delay={index * 80}>
               <Link
                 href={service.href}
-                className="tile-glow flex h-full flex-col rounded-2xl border border-white/10 bg-[#101119] p-5"
+                className="card-lift surface flex h-full flex-col p-5"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <service.icon className="size-6 text-primary" />
+                    <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
+                      <service.icon className="size-5 text-primary" />
+                    </span>
                     <p className="mt-3 text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">
                       {service.kicker}
                     </p>
-                    <h2 className="mt-1 text-xl font-semibold text-white">{service.title}</h2>
+                    <h2 className="mt-1 text-xl font-semibold tracking-tight text-white">{service.title}</h2>
                   </div>
                   <div className="w-36 shrink-0 rounded-xl border border-white/8 bg-black/25 p-2">
                     <ModuleFigure slug={service.slug} />
@@ -82,11 +84,12 @@ export default function ServicesPage() {
             </Reveal>
           ))}
         </div>
-        <div className="mt-12 rounded-2xl border border-primary/25 bg-primary/5 p-6 text-center sm:p-8">
-          <h2 className="text-2xl font-semibold text-white">
+        <div className="relative mt-14 overflow-hidden rounded-3xl border border-primary/20 bg-primary/5 p-6 text-center sm:p-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.14),transparent_65%)]" />
+          <h2 className="relative text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             If these KPIs already run your morning meeting, put them on the line.
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-zinc-400">
+          <p className="relative mx-auto mt-2 max-w-2xl text-sm text-zinc-400">
             30 minutes. OTIF, fill-rate, downtime, Copilot. You leave with a recovered-order
             story you can take to the plant manager.
           </p>
@@ -94,7 +97,7 @@ export default function ServicesPage() {
             href="/request-demo"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "mt-6 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold glow-cta"
+              "glow-cta relative mt-6 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold"
             )}
           >
             Request for Demo

@@ -19,7 +19,7 @@ export default function DecisionLoopPage() {
           ["Act", "Supervisors dispatch without leaving the floor tablet."],
           ["Measure", "Close the loop on recovered orders and fill-rate."],
         ].map(([title, copy], i) => (
-          <li key={title} className="rounded-2xl border border-white/10 bg-[#101119] p-5">
+          <li key={title} className="card-lift surface p-5">
             <p className="text-xs font-semibold text-primary">0{i + 1}</p>
             <h2 className="mt-1 font-semibold text-white">{title}</h2>
             <p className="mt-2 text-sm text-zinc-400">{copy}</p>

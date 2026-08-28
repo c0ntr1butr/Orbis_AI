@@ -65,33 +65,33 @@ const transformations = [
 export default function HomePage() {
   return (
     <div>
-      <section className="relative min-h-[88vh] overflow-hidden">
+      <section className="relative min-h-[92vh] overflow-hidden">
         <div
           className="hero-zoom absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${asset("/images/factory-operations.jpg")})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#07080d] via-[#07080d]/82 to-[#07080d]/38" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#07080d] via-transparent to-[#07080d]/35" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(227,30,36,0.18),transparent_50%)]" />
-        <CircuitOverlay />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07080d] via-[#07080d]/85 to-[#07080d]/48" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07080d] via-transparent to-[#07080d]/40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(227,30,36,0.2),transparent_50%)]" />
+        <div className="bg-dot-grid pointer-events-none absolute inset-0 hidden opacity-60 lg:block" />
 
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:py-24">
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:py-28">
           <div>
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-primary uppercase">
+            <p className="kicker rounded-full border border-primary/25 bg-primary/8 px-3 py-1.5">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
               Intelligence layer for manufacturing
             </p>
-            <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[3.15rem] lg:leading-[1.12]">
+            <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance text-white sm:text-6xl lg:text-[4rem] lg:leading-[1.04]">
               The <span className="text-gradient-orbis">intelligence layer</span>{" "}
-              that makes your factory look this alive.
+              for a factory this alive.
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
               Robots already weld. AGVs already move. FactoryOS is what sells
               the next shift: live OTIF, crew fill, downtime, and a Copilot that
               tells supervisors which kit and which certified operator recover
               the order — before the dock closes.
             </p>
-            <div className="mt-8">
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
                 href="/request-demo"
                 className={cn(
@@ -102,11 +102,11 @@ export default function HomePage() {
                 See it on your lines
                 <ArrowRight className="size-4" />
               </Link>
+              <span className="text-xs text-zinc-500">
+                30-minute working demo · no slide tour
+              </span>
             </div>
-            <p className="mt-3 text-xs text-zinc-500">
-              30-minute working demo · no slide tour · production + workforce in one view
-            </p>
-            <div className="mt-10">
+            <div className="mt-12 border-t border-white/8 pt-6">
               <TrustBadges />
             </div>
           </div>
@@ -122,19 +122,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-primary/20 bg-[#0c0d16]">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-4 sm:px-6">
+      <section className="border-y border-white/8 bg-[#0c0d16]">
+        <div className="mx-auto grid max-w-6xl gap-8 divide-y divide-white/8 px-4 py-10 sm:grid-cols-4 sm:divide-x sm:divide-y-0 sm:px-6">
           {[
             { n: 6, suffix: " / 11", label: "at-risk orders recovered in-shift" },
             { n: 92, suffix: "%", label: "crew fill vs certified need" },
             { n: 4, suffix: " hrs", label: "earlier fill-rate risk signal" },
             { n: 30, suffix: " min", label: "to a working plant demo" },
           ].map((stat) => (
-            <div key={stat.label} className="text-center sm:text-left">
-              <p className="text-3xl font-semibold text-white">
+            <div key={stat.label} className="pt-8 text-center first:pt-0 sm:px-6 sm:pt-0 sm:text-left sm:first:pl-0">
+              <p className="text-4xl font-semibold tracking-tight text-white">
                 <CountUp value={stat.n} suffix={stat.suffix} />
               </p>
-              <p className="mt-1 text-xs text-zinc-400">{stat.label}</p>
+              <p className="mt-2 text-xs text-zinc-400">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -164,8 +164,9 @@ export default function HomePage() {
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {transformations.map((item, index) => (
               <Reveal key={item.after} delay={index * 90}>
-                <article className="card-lift h-full rounded-2xl border border-white/10 bg-[#101119]/90 p-5">
-                  <p className="text-[11px] font-semibold tracking-wide text-zinc-500 uppercase">
+                <article className="card-lift surface h-full p-6">
+                  <span className="font-mono text-xs text-zinc-600">0{index + 1}</span>
+                  <p className="mt-4 text-[11px] font-semibold tracking-wide text-zinc-500 uppercase">
                     Before FactoryOS
                   </p>
                   <p className="mt-2 text-sm text-zinc-400">{item.before}</p>
@@ -173,7 +174,7 @@ export default function HomePage() {
                   <p className="text-[11px] font-semibold tracking-wide text-primary uppercase">
                     With FactoryOS
                   </p>
-                  <p className="mt-2 text-sm text-zinc-200">{item.after}</p>
+                  <p className="mt-2 text-sm text-zinc-100">{item.after}</p>
                 </article>
               </Reveal>
             ))}
@@ -181,14 +182,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#101119] py-14">
+      <section className="bg-[#0a0b12] py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
-            <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+            <p className="kicker">Why now</p>
+            <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               Why operations leaders book FactoryOS this quarter
             </h2>
           </Reveal>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
               {
                 title: "It sells itself on the floor",
@@ -204,8 +206,11 @@ export default function HomePage() {
               },
             ].map((item, index) => (
               <Reveal key={item.title} delay={index * 80}>
-                <article className="card-lift h-full rounded-2xl border border-white/10 p-5">
-                  <h3 className="text-base font-semibold text-white">{item.title}</h3>
+                <article className="card-lift surface h-full p-6">
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-primary/10 font-mono text-sm text-primary">
+                    {index + 1}
+                  </span>
+                  <h3 className="mt-4 text-base font-semibold text-white">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-zinc-400">{item.copy}</p>
                 </article>
               </Reveal>
@@ -214,17 +219,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-white/5 bg-[#0a0b12] py-16 sm:py-20">
+      <section className="border-y border-white/8 bg-[#0a0b12] py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
-            <p className="text-center text-sm font-medium tracking-wide text-zinc-400 uppercase">
-              From signals to decisions to measurable value
-            </p>
-            <h2 className="mx-auto mt-2 max-w-2xl text-center text-3xl font-semibold text-white">
+            <p className="kicker justify-center">From signals to decisions to measurable value</p>
+            <h2 className="mx-auto mt-2 max-w-2xl text-center text-3xl font-semibold tracking-tight text-white">
               How FactoryOS runs every shift
             </h2>
           </Reveal>
-          <div className="mt-10">
+          <div className="mt-12">
             <SignalFlowDiagram />
           </div>
         </div>
@@ -233,7 +236,8 @@ export default function HomePage() {
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
-            <h2 className="text-3xl font-semibold text-white">
+            <p className="kicker">Platform</p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white">
               Industry standard modules and KPIs
             </h2>
             <p className="mt-3 max-w-2xl text-zinc-400">
@@ -246,24 +250,28 @@ export default function HomePage() {
           <Reveal delay={80}>
             <div className="mt-10">
               <PlatformWireframe />
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Link href="/services/production" className="text-sm text-primary hover:underline">
-                  Production Intelligence →
-                </Link>
-                <Link href="/services/workforce" className="text-sm text-primary hover:underline">
-                  Workforce Intelligence →
-                </Link>
-                <Link href="/services/copilot" className="text-sm text-primary hover:underline">
-                  Factory AI Copilot →
-                </Link>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {[
+                  { href: "/services/production", label: "Production Intelligence" },
+                  { href: "/services/workforce", label: "Workforce Intelligence" },
+                  { href: "/services/copilot", label: "Factory AI Copilot" },
+                ].map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-zinc-300 transition-colors hover:border-primary/40 hover:text-white"
+                  >
+                    {link.label} →
+                  </Link>
+                ))}
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="overflow-hidden border-y border-white/5 bg-[#0a0b12] py-10">
-        <p className="mb-5 text-center text-sm font-medium text-zinc-400">
+      <section className="overflow-hidden border-y border-white/8 bg-[#0a0b12] py-10">
+        <p className="mb-5 text-center text-sm font-medium text-zinc-500">
           Built for plants that cannot miss a customer dock
         </p>
         <div className="marquee flex min-w-max gap-12 px-8 text-sm font-semibold tracking-[0.22em] text-zinc-500 uppercase">
@@ -290,34 +298,44 @@ export default function HomePage() {
       </section>
 
       <section className="py-16 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
-          {features.map((feature, index) => (
-            <Reveal key={feature.title} delay={index * 80}>
-              <article className="card-lift flex h-full flex-col rounded-2xl border border-white/10 bg-[#101119] p-5">
-                <feature.icon className="size-7 text-primary" />
-                <h3 className="mt-4 text-base font-semibold text-white">{feature.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
-                  {feature.copy}
-                </p>
-                <Link
-                  href={feature.href}
-                  className="mt-4 text-sm font-medium text-primary hover:underline"
-                >
-                  {feature.link} →
-                </Link>
-              </article>
-            </Reveal>
-          ))}
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <Reveal>
+            <p className="kicker">Built for the plant</p>
+            <h2 className="mt-2 max-w-2xl text-3xl font-semibold tracking-tight text-white">
+              Why FactoryOS is the layer, not another dashboard
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, index) => (
+              <Reveal key={feature.title} delay={index * 80}>
+                <article className="card-lift surface flex h-full flex-col p-6">
+                  <span className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
+                    <feature.icon className="size-5 text-primary" />
+                  </span>
+                  <h3 className="mt-5 text-base font-semibold text-white">{feature.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
+                    {feature.copy}
+                  </p>
+                  <Link
+                    href={feature.href}
+                    className="mt-5 text-sm font-medium text-primary hover:underline"
+                  >
+                    {feature.link} →
+                  </Link>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.18),transparent_60%)]" />
-        <div className="relative mx-auto max-w-3xl rounded-3xl border border-white/10 bg-[#101119] px-6 py-12 text-center sm:px-12">
-          <h2 className="text-3xl font-semibold text-white">
+        <div className="surface relative mx-auto max-w-3xl px-6 py-12 text-center sm:px-14 sm:py-16">
+          <h2 className="text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">
             Stop defending yesterday’s report. Sell the next recovered order.
           </h2>
-          <p className="mt-3 text-zinc-400">
+          <p className="mx-auto mt-3 max-w-xl text-zinc-400">
             Book a 30-minute FactoryOS session. We run OTIF, crew fill, downtime,
             and Copilot on a scenario that looks like your lines — then you decide
             if the intelligence layer belongs in the control room.
@@ -326,7 +344,7 @@ export default function HomePage() {
             href="/request-demo"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "mt-8 inline-flex h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-8 font-semibold glow-cta"
+              "glow-cta mt-8 inline-flex h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-8 font-semibold"
             )}
           >
             Request a Demo
@@ -335,30 +353,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  );
-}
-
-function CircuitOverlay() {
-  return (
-    <svg
-      className="pointer-events-none absolute inset-y-0 left-0 hidden h-full w-1/2 opacity-30 lg:block"
-      viewBox="0 0 400 600"
-      fill="none"
-      aria-hidden
-    >
-      {Array.from({ length: 14 }).map((_, i) => (
-        <g key={i} className="circuit-pulse" style={{ animationDelay: `${i * 0.12}s` }}>
-          <line
-            x1="0"
-            y1={40 + i * 38}
-            x2={80 + (i % 4) * 18}
-            y2={40 + i * 38}
-            stroke="#E31E24"
-            strokeWidth="1.4"
-          />
-          <circle cx="4" cy={40 + i * 38} r="2.5" fill="#E31E24" />
-        </g>
-      ))}
-    </svg>
   );
 }

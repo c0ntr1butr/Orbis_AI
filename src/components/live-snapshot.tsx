@@ -23,8 +23,9 @@ export function LiveSnapshot() {
   }, []);
 
   return (
-    <div className="orbis-glow relative overflow-hidden rounded-2xl border border-white/12 bg-[#0d0e16]/86 p-4 backdrop-blur-md sm:p-5">
-      <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl" />
+    <div className="orbis-glow relative overflow-hidden rounded-2xl border border-white/12 bg-[#0d0e16]/90 p-4 backdrop-blur-xl sm:p-5">
+      <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
       <div className="relative mb-4 flex items-center justify-between">
         <div>
           <p className="text-xs font-medium tracking-wide text-zinc-400 uppercase">
@@ -91,10 +92,10 @@ export function TrustBadges() {
     { icon: Plug, label: "API-Ready Integrations" },
   ];
   return (
-    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <ul className="flex flex-wrap gap-x-6 gap-y-3">
       {items.map(({ icon: Icon, label }) => (
-        <li key={label} className="flex items-center gap-2 text-xs text-zinc-400">
-          <Icon className="size-4 text-primary" />
+        <li key={label} className="flex items-center gap-2 text-xs text-zinc-500">
+          <Icon className="size-3.5 text-zinc-600" />
           {label}
         </li>
       ))}

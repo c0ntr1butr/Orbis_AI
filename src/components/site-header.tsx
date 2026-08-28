@@ -21,8 +21,8 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#07080d]/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-white/8 bg-[#07080d]/75 backdrop-blur-xl">
+      <div className="mx-auto flex h-17 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" aria-label="Orbis FactoryOS home" onClick={() => setMenuOpen(false)}>
           <Logo />
         </Link>
@@ -38,13 +38,13 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   active ? "text-white" : "text-zinc-400 hover:text-white"
                 )}
               >
                 {item.label}
                 {active && (
-                  <span className="mx-auto mt-1 block h-0.5 w-5 rounded-full bg-primary" />
+                  <span className="absolute inset-x-3 bottom-[-1.05rem] h-0.5 rounded-full bg-primary" />
                 )}
               </Link>
             );
