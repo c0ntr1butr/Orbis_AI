@@ -42,7 +42,7 @@ export default function HomePage() {
             </p>
             <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance text-white sm:text-6xl lg:text-[3.6rem] lg:leading-[1.06]">
               Transform Factory Operations{" "}
-              <span className="text-gradient-orbis">With Intelligence</span>.
+              <span className="text-gradient-orbis">With Intelligence</span>!
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
               FactoryOS connects manufacturing operations, people, assets, and
@@ -205,15 +205,21 @@ export default function HomePage() {
               Built AI-Native. Enterprise Ready.
             </h2>
           </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
             {aiNativeCore.map((item, index) => (
-              <Reveal key={item.title} delay={index * 60}>
-                <div className="card-lift glass h-full p-4">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/5">
-                    <item.icon className="size-4.5 text-primary" />
-                  </span>
-                  <h3 className="mt-3 text-sm font-semibold text-white">{item.title}</h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">{item.copy}</p>
+              <Reveal key={item.title} delay={index * 80}>
+                <div className="flex flex-col items-center text-center">
+                  <div
+                    className="float-card relative flex items-center justify-center"
+                    style={{ animationDelay: `${index * 0.35}s` }}
+                  >
+                    <span className="absolute inline-flex size-16 animate-ping rounded-full bg-primary/20" style={{ animationDuration: "3s" }} />
+                    <span className="orbis-glow relative flex size-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/25 to-primary/5 backdrop-blur-sm">
+                      <item.icon className="size-6 text-primary" />
+                    </span>
+                  </div>
+                  <h3 className="mt-4 text-sm font-semibold text-white">{item.title}</h3>
+                  <p className="mt-1.5 max-w-[15rem] text-xs leading-relaxed text-zinc-400">{item.copy}</p>
                 </div>
               </Reveal>
             ))}

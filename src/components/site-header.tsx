@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Logo } from "@/components/brand/logo";
 import { buttonVariants } from "@/components/ui/button";
-import { modules } from "@/lib/services";
 import { cn } from "@/lib/utils";
 
 const nav = [
   { href: "/", label: "Home" },
+  { href: "/services", label: "Product" },
   { href: "/use-cases", label: "Use Cases" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -19,10 +19,7 @@ const nav = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [productOpen, setProductOpen] = useState(false);
-  const [mobileProductOpen, setMobileProductOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const onProduct = pathname.startsWith("/services");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -44,69 +41,9 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          <Link
-            href="/"
-            className={cn(
-              "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
-              pathname === "/" ? "text-white" : "text-zinc-400 hover:text-white"
-            )}
-          >
-            Home
-            {pathname === "/" && (
-              <span className="absolute inset-x-3 bottom-[-1.05rem] h-0.5 rounded-full bg-primary" />
-            )}
-          </Link>
-
-          <div
-            className="relative"
-            onMouseEnter={() => setProductOpen(true)}
-            onMouseLeave={() => setProductOpen(false)}
-          >
-            <Link
-              href="/services"
-              aria-expanded={productOpen}
-              className={cn(
-                "relative flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                onProduct ? "text-white" : "text-zinc-400 hover:text-white"
-              )}
-            >
-              Product
-              <ChevronDown className={cn("size-3.5 transition-transform", productOpen && "rotate-180")} />
-              {onProduct && (
-                <span className="absolute inset-x-3 bottom-[-1.05rem] h-0.5 rounded-full bg-primary" />
-              )}
-            </Link>
-
-            {productOpen && (
-              <div className="absolute top-full left-1/2 z-50 w-[30rem] -translate-x-1/2 pt-3">
-                <div className="grid grid-cols-2 gap-1 rounded-2xl border border-white/10 bg-[#12131c] p-3 shadow-[0_16px_40px_rgb(0_0_0_/_45%)]">
-                  {modules.map((module) => (
-                    <Link
-                      key={module.slug}
-                      href={module.href}
-                      onClick={() => setProductOpen(false)}
-                      className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors hover:bg-white/[0.05]"
-                    >
-                      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/18 to-primary/5">
-                        <module.icon className="size-4 text-primary" />
-                      </span>
-                      <span className="text-xs font-medium text-zinc-200">{module.title}</span>
-                    </Link>
-                  ))}
-                  <Link
-                    href="/services"
-                    onClick={() => setProductOpen(false)}
-                    className="col-span-2 mt-1 flex items-center justify-center rounded-lg border-t border-white/10 px-2.5 py-2 text-xs font-semibold text-primary hover:bg-primary/5"
-                  >
-                    View all {modules.length} modules →
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {nav.slice(1).map((item) => {
-            const active = pathname.startsWith(item.href);
+          {nav.map((item) => {
+            const active =
+              item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
@@ -152,42 +89,9 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="max-h-[calc(100vh-4.25rem)] overflow-y-auto border-t border-white/10 bg-[#0d0e16] px-4 py-4 lg:hidden">
+        <div className="border-t border-white/10 bg-[#0d0e16] px-4 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
-            <Link
-              href="/"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-3 py-3 text-base font-medium text-zinc-200 hover:bg-white/5"
-            >
-              Home
-            </Link>
-
-            <button
-              type="button"
-              aria-expanded={mobileProductOpen}
-              onClick={() => setMobileProductOpen((open) => !open)}
-              className="flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-zinc-200 hover:bg-white/5"
-            >
-              Product
-              <ChevronDown className={cn("size-4 transition-transform", mobileProductOpen && "rotate-180")} />
-            </button>
-            {mobileProductOpen && (
-              <div className="mb-1 grid grid-cols-2 gap-1 rounded-lg bg-white/[0.03] p-2">
-                {modules.map((module) => (
-                  <Link
-                    key={module.slug}
-                    href={module.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-2 rounded-md px-2 py-2 text-xs font-medium text-zinc-200 hover:bg-white/5"
-                  >
-                    <module.icon className="size-3.5 text-primary" />
-                    {module.title}
-                  </Link>
-                ))}
-              </div>
-            )}
-
-            {nav.slice(1).map((item) => (
+            {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
