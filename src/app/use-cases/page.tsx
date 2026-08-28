@@ -170,7 +170,7 @@ export default function UseCasesPage() {
                 "rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors",
                 filter === item
                   ? "border-primary bg-primary text-white"
-                  : "border-white/12 text-zinc-400 hover:border-white/30 hover:text-white"
+                  : "border-black/12 text-zinc-500 hover:border-black/30 hover:text-zinc-900"
               )}
             >
               {item}
@@ -179,7 +179,7 @@ export default function UseCasesPage() {
         </div>
 
         {visible.length === 0 ? (
-          <p className="mt-12 rounded-2xl border border-dashed border-white/15 p-10 text-center text-zinc-400">
+          <p className="mt-12 rounded-2xl border border-dashed border-black/15 p-10 text-center text-zinc-500">
             No use cases in this filter yet. Choose All to see every plant story.
           </p>
         ) : (
@@ -192,14 +192,14 @@ export default function UseCasesPage() {
                 <p className="text-xs font-semibold tracking-wide text-primary uppercase">
                   {item.industry}
                 </p>
-                <h2 className="mt-2 text-lg font-semibold text-white">{item.title}</h2>
-                <p className="mt-2 text-sm font-medium text-zinc-200">{item.capture}</p>
+                <h2 className="mt-2 text-lg font-semibold text-zinc-900">{item.title}</h2>
+                <p className="mt-2 text-sm font-medium text-zinc-800">{item.capture}</p>
                 <div className="mt-4">
                   <div className="mb-1 flex justify-between text-[10px] text-zinc-500">
                     <span>{item.beforeLabel}</span>
                     <span className="text-live">{item.afterLabel}</span>
                   </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-black/8">
                     <div
                       className="bar-grow h-full rounded-full bg-gradient-to-r from-[#8B0000] to-live"
                       style={{ width: `${item.afterPct}%` }}
@@ -210,7 +210,7 @@ export default function UseCasesPage() {
                   {item.kpis.map((kpi, i) => (
                     <div
                       key={kpi.label}
-                      className="kpi-pop rounded-lg border border-white/10 bg-black/30 px-2 py-1.5"
+                      className="kpi-pop rounded-lg border border-black/8 bg-black/[0.02] px-2 py-1.5"
                       style={{ animationDelay: `${i * 50}ms` }}
                     >
                       <p
@@ -218,8 +218,8 @@ export default function UseCasesPage() {
                           kpi.tone === "live"
                             ? "text-sm font-semibold text-live"
                             : kpi.tone === "risk"
-                              ? "text-sm font-semibold text-red-400"
-                              : "text-sm font-semibold text-white"
+                              ? "text-sm font-semibold text-primary"
+                              : "text-sm font-semibold text-zinc-900"
                         }
                       >
                         {kpi.value}
@@ -228,12 +228,12 @@ export default function UseCasesPage() {
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-sm text-zinc-400">
-                  <span className="font-medium text-zinc-200">Before: </span>
+                <p className="mt-4 text-sm text-zinc-600">
+                  <span className="font-medium text-zinc-800">Before: </span>
                   {item.problem}
                 </p>
-                <p className="mt-2 text-sm text-zinc-400">
-                  <span className="font-medium text-zinc-200">With FactoryOS: </span>
+                <p className="mt-2 text-sm text-zinc-600">
+                  <span className="font-medium text-zinc-800">With FactoryOS: </span>
                   {item.result}
                 </p>
                 {item.service && (
@@ -250,11 +250,11 @@ export default function UseCasesPage() {
         )}
 
         <div className="relative mt-14 overflow-hidden rounded-3xl border border-primary/20 bg-primary/5 p-6 text-center sm:p-10">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.14),transparent_65%)]" />
-          <h2 className="relative text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.1),transparent_65%)]" />
+          <h2 className="relative text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
             Bring your line. We will put these figures on it.
           </h2>
-          <p className="relative mx-auto mt-2 max-w-xl text-sm text-zinc-400">
+          <p className="relative mx-auto mt-2 max-w-xl text-sm text-zinc-600">
             A working session on OTIF, fill, downtime, and Copilot — the same KPIs on this page,
             mapped to your cells.
           </p>

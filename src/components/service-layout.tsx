@@ -11,7 +11,7 @@ const bannerImages = ["/images/factory-operations.jpg", "/images/factory-transfo
 
 export function ServiceSubnav({ current }: { current: string }) {
   return (
-    <div className="border-b border-white/8 bg-[#0a0b12]">
+    <div className="border-b border-black/8 bg-zinc-50">
       <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-3 sm:px-6">
         <Link
           href="/services"
@@ -19,7 +19,7 @@ export function ServiceSubnav({ current }: { current: string }) {
             "shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
             current === "hub"
               ? "bg-primary text-white"
-              : "text-zinc-400 hover:bg-white/5 hover:text-white"
+              : "text-zinc-500 hover:bg-black/5 hover:text-zinc-900"
           )}
         >
           All modules
@@ -32,7 +32,7 @@ export function ServiceSubnav({ current }: { current: string }) {
               "shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
               current === module.slug
                 ? "bg-primary text-white"
-                : "text-zinc-400 hover:bg-white/5 hover:text-white"
+                : "text-zinc-500 hover:bg-black/5 hover:text-zinc-900"
             )}
           >
             {module.title}
@@ -73,8 +73,8 @@ export function ServiceLayout({ slug }: { slug: string }) {
               <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
                 <item.icon className="size-5 text-primary" />
               </span>
-              <h2 className="mt-3 font-semibold text-white">{item.title}</h2>
-              <p className="mt-2 text-sm text-zinc-400">{item.copy}</p>
+              <h2 className="mt-3 font-semibold text-zinc-900">{item.title}</h2>
+              <p className="mt-2 text-sm text-zinc-600">{item.copy}</p>
             </article>
           ))}
         </div>

@@ -48,10 +48,10 @@ export function DemoForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-live/30 bg-live/10 p-6 text-center">
+      <div className="rounded-2xl border border-live/25 bg-live/8 p-6 text-center">
         <CheckCircle2 className="mx-auto mb-3 size-8 text-live" />
-        <h3 className="text-lg font-semibold text-white">Demo request received</h3>
-        <p className="mt-2 text-sm text-zinc-300">
+        <h3 className="text-lg font-semibold text-zinc-900">Demo request received</h3>
+        <p className="mt-2 text-sm text-zinc-600">
           A plant operations specialist will follow up within one business day
           with a FactoryOS walkthrough tailored to your lines.
         </p>
@@ -60,7 +60,7 @@ export function DemoForm({
   }
 
   const fieldClass =
-    "h-10 w-full rounded-lg border border-input bg-white/5 px-2.5 text-sm text-white outline-none placeholder:text-zinc-500 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+    "h-10 w-full rounded-lg border border-input bg-zinc-50 px-2.5 text-sm text-zinc-900 outline-none placeholder:text-zinc-400 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
   return (
     <form onSubmit={onSubmit} method="post" action="#" className="grid gap-4" noValidate>
@@ -131,13 +131,13 @@ export function DemoForm({
         </div>
       )}
       {status === "error" && (
-        <p role="alert" className="text-sm text-red-400">
+        <p role="alert" className="text-sm text-destructive">
           {error}
         </p>
       )}
       <button
         type="submit"
-        className="inline-flex h-11 items-center justify-center rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-4 text-sm font-semibold text-white hover:brightness-110"
+        className="glow-cta inline-flex h-11 items-center justify-center rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-4 text-sm font-semibold text-white hover:brightness-110"
       >
         {submitLabel}
       </button>

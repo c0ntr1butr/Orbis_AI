@@ -44,10 +44,10 @@ export function CtaBand() {
     <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.16),transparent_60%)]" />
       <div className="surface relative mx-auto max-w-3xl px-6 py-12 text-center sm:px-14 sm:py-14">
-        <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+        <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
           Ready to put a live plant on the screen?
         </h2>
-        <p className="mt-3 text-zinc-400">
+        <p className="mt-3 text-zinc-600">
           See Orbis FactoryOS recover orders, fill, and downtime on a working
           snapshot — then decide if the intelligence layer belongs in your
           control room.

@@ -8,7 +8,7 @@ type LogoProps = {
 export function Logo({ className }: LogoProps) {
   return (
     <span className={cn("flex items-center gap-2.5", className)}>
-      <span className="rounded-md bg-white px-2 py-1 shadow-[0_0_0_1px_rgb(255_255_255_/_18%)]">
+      <span className="rounded-md border border-black/8 bg-white px-2 py-1 shadow-sm">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={asset("/images/orbis-logo.png")}
@@ -17,10 +17,10 @@ export function Logo({ className }: LogoProps) {
         />
       </span>
       <span className="hidden leading-tight sm:block">
-        <span className="block text-[11px] font-semibold tracking-[0.22em] text-white uppercase">
+        <span className="block text-[11px] font-semibold tracking-[0.22em] text-zinc-900 uppercase">
           FactoryOS
         </span>
-        <span className="mt-0.5 block text-[10px] text-zinc-400">
+        <span className="mt-0.5 block text-[10px] text-zinc-500">
           Plant intelligence
         </span>
       </span>

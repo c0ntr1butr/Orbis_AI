@@ -15,7 +15,7 @@ export default function ContactPage() {
       />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <ul className="space-y-3 text-sm text-zinc-300">
+          <ul className="space-y-3 text-sm text-zinc-800">
             <li className="card-lift surface flex items-start gap-4 p-4">
               <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">
                 <Mail className="size-4 text-primary" />
@@ -50,7 +50,7 @@ export default function ContactPage() {
               <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">
                 <Globe className="size-4 text-primary" />
               </span>
-              <a href="https://www.orbisfactoryos.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+              <a href="https://www.orbisfactoryos.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900">
                 www.orbisfactoryos.ai
                 <span className="block text-zinc-500">Product, docs, and pricing</span>
               </a>
@@ -70,8 +70,8 @@ export default function ContactPage() {
         </Reveal>
         <Reveal delay={80}>
           <div className="surface p-6 sm:p-8">
-            <h2 className="text-lg font-semibold tracking-tight text-white">Send a message</h2>
-            <p className="mt-1 mb-6 text-sm text-zinc-400">
+            <h2 className="text-lg font-semibold tracking-tight text-zinc-900">Send a message</h2>
+            <p className="mt-1 mb-6 text-sm text-zinc-600">
               Tell us the plant, the line, and whether OTIF, downtime, or crew
               fill is the first problem to open.
             </p>

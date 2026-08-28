@@ -23,7 +23,7 @@ export function SparkLine({ className = "" }: { className?: string }) {
 
 export function BarChart({
   values,
-  color = "#22c55e",
+  color = "#16a34a",
 }: {
   values: number[];
   color?: string;

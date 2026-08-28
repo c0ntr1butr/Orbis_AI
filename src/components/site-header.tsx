@@ -21,7 +21,7 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/8 bg-[#07080d]/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-black/8 bg-white/85 backdrop-blur-xl">
       <div className="mx-auto flex h-17 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" aria-label="Orbis FactoryOS home" onClick={() => setMenuOpen(false)}>
           <Logo />
@@ -39,7 +39,7 @@ export function SiteHeader() {
                 href={item.href}
                 className={cn(
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                  active ? "text-white" : "text-zinc-400 hover:text-white"
+                  active ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"
                 )}
               >
                 {item.label}
@@ -78,14 +78,14 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="border-t border-white/10 bg-[#0d0e16] px-4 py-4 lg:hidden">
+        <div className="border-t border-black/8 bg-white px-4 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-lg px-3 py-3 text-base font-medium text-zinc-200 hover:bg-white/5"
+                className="rounded-lg px-3 py-3 text-base font-medium text-zinc-700 hover:bg-black/5"
               >
                 {item.label}
               </Link>
