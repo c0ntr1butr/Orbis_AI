@@ -29,7 +29,7 @@ export function HealthRing({
   return (
     <div className="flex items-center gap-3">
       <svg viewBox="0 0 64 64" className="size-14 shrink-0 -rotate-90">
-        <circle cx="32" cy="32" r={r} fill="none" stroke="rgb(0 0 0 / 8%)" strokeWidth="5" />
+        <circle cx="32" cy="32" r={r} fill="none" stroke="rgb(255 255 255 / 10%)" strokeWidth="5" />
         <circle
           cx="32"
           cy="32"
@@ -45,7 +45,7 @@ export function HealthRing({
           x="32"
           y="36"
           textAnchor="middle"
-          fill="#1a1b1f"
+          fill="#fff"
           fontSize="15"
           fontWeight="700"
           transform="rotate(90 32 32)"
@@ -90,14 +90,14 @@ export function StageTrack({
             (s.tone === "delayed"
               ? "border-primary/35 bg-primary/6"
               : s.tone === "running"
-                ? "border-primary/25 bg-black/[0.02]"
-                : "border-black/8 bg-black/[0.015]")
+                ? "border-primary/25 bg-white/[0.04]"
+                : "border-white/10 bg-white/[0.02]")
           }
         >
           <p
             className={
               "text-xl font-semibold " +
-              (s.tone === "delayed" ? "text-primary" : s.tone === "running" ? "text-zinc-900" : "text-zinc-600")
+              (s.tone === "delayed" ? "text-primary" : s.tone === "running" ? "text-white" : "text-zinc-400")
             }
           >
             {s.n}
@@ -116,7 +116,7 @@ export function SegmentedBar({
 }) {
   return (
     <div>
-      <div className="flex h-7 overflow-hidden rounded-lg border border-black/8">
+      <div className="flex h-7 overflow-hidden rounded-lg border border-white/10">
         {segments.map((seg) => (
           <div key={seg.label} style={{ width: `${seg.pct}%`, background: seg.color }} />
         ))}
@@ -145,7 +145,7 @@ export function EscalationChain({
           <div
             className={
               "min-w-28 rounded-xl border px-3 py-2.5 text-center " +
-              (lvl.critical ? "border-primary/40 bg-primary/6 text-primary" : "border-black/8 bg-black/[0.02] text-zinc-800")
+              (lvl.critical ? "border-primary/40 bg-primary/6 text-primary" : "border-white/10 bg-white/[0.04] text-zinc-200")
             }
           >
             <p className="text-xs font-semibold">{lvl.label}</p>
@@ -166,10 +166,10 @@ export function ImpactRow({
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       {items.map((item) => (
-        <div key={item.label} className="rounded-xl border border-black/8 bg-black/[0.015] p-4">
+        <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
           <p className="text-[11px] font-semibold tracking-wide text-zinc-500 uppercase">{item.label}</p>
-          <p className="mt-1.5 text-xl font-semibold text-zinc-900">{item.value}</p>
-          <div className="mt-3 flex items-center gap-2 border-t border-dashed border-black/10 pt-3">
+          <p className="mt-1.5 text-xl font-semibold text-white">{item.value}</p>
+          <div className="mt-3 flex items-center gap-2 border-t border-dashed border-white/10 pt-3">
             <span
               className={
                 "text-sm font-semibold " +
@@ -194,8 +194,8 @@ export function ConnectorGrid({
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {items.map((item) => (
-        <div key={item.label} className="rounded-xl border border-black/8 bg-black/[0.015] p-3.5 text-center">
-          <p className="text-xs font-medium text-zinc-800">{item.label}</p>
+        <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5 text-center">
+          <p className="text-xs font-medium text-zinc-200">{item.label}</p>
           <span
             className={
               "mt-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold " +
@@ -203,7 +203,7 @@ export function ConnectorGrid({
                 ? "bg-live/10 text-live"
                 : item.status === "warn"
                   ? "bg-amber-500/10 text-amber-700"
-                  : "bg-black/6 text-zinc-500")
+                  : "bg-white/8 text-zinc-500")
             }
           >
             {item.status === "connected" ? "Connected" : item.status === "warn" ? "Needs attention" : "Not set up"}
@@ -223,7 +223,7 @@ export function CopilotPreview() {
   ];
   return (
     <div className="grid gap-4 lg:grid-cols-[1fr_0.85fr]">
-      <div className="flex flex-col gap-3 rounded-xl border border-black/8 bg-black/[0.015] p-4">
+      <div className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4">
         <p className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-zinc-500 uppercase">
           <Sparkles className="size-3.5 text-primary" />
           Ask Factory AI
@@ -231,11 +231,11 @@ export function CopilotPreview() {
         <div className="ml-auto max-w-[85%] rounded-xl rounded-br-sm bg-primary text-white px-3.5 py-2.5 text-sm">
           Why is production behind today?
         </div>
-        <div className="max-w-[90%] rounded-xl rounded-bl-sm border border-black/8 bg-white px-3.5 py-2.5 text-sm leading-relaxed text-zinc-700">
+        <div className="max-w-[90%] rounded-xl rounded-bl-sm border border-white/10 bg-white/[0.03] px-3.5 py-2.5 text-sm leading-relaxed text-zinc-300">
           Line 3 is short 18 door-latch kits (material shortage) and two certified operators are on
           Line 1 (workforce gap). Pull kit 7B from overflow and reassign those two operators to
           recover 6 of 11 at-risk orders.
-          <span className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-zinc-900 text-white px-2.5 py-1 text-[11px] font-semibold">
+          <span className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-white text-[#0d0e16] px-2.5 py-1 text-[11px] font-semibold">
             Generate CAPA →
           </span>
         </div>
@@ -256,7 +256,7 @@ export function CopilotPreview() {
           <div className="mt-2 flex flex-wrap gap-1.5">
             {["Assign work order", "Notify supervisor", "Generate CAPA", "Schedule maintenance", "Export report"].map(
               (a) => (
-                <span key={a} className="rounded-lg bg-black/[0.04] px-2.5 py-1.5 text-[11px] font-medium text-zinc-700">
+                <span key={a} className="rounded-lg bg-white/[0.05] px-2.5 py-1.5 text-[11px] font-medium text-zinc-300">
                   {a}
                 </span>
               )
@@ -283,7 +283,7 @@ function ChartFrame({
     <div>
       <div className="mb-3 flex items-baseline justify-between">
         <p className="text-xs font-medium text-zinc-500">{title}</p>
-        <p className="text-sm font-semibold text-zinc-900">{metric}</p>
+        <p className="text-sm font-semibold text-white">{metric}</p>
       </div>
       {children}
       <div className="mt-1.5 flex justify-between text-[10px] tracking-wide text-zinc-400 uppercase">

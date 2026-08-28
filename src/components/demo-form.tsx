@@ -20,7 +20,6 @@ export function DemoForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [plant, setPlant] = useState("");
   const [message, setMessage] = useState("");
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -48,10 +47,10 @@ export function DemoForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-live/25 bg-live/8 p-6 text-center">
+      <div className="rounded-2xl border border-live/30 bg-live/10 p-6 text-center">
         <CheckCircle2 className="mx-auto mb-3 size-8 text-live" />
-        <h3 className="text-lg font-semibold text-zinc-900">Demo request received</h3>
-        <p className="mt-2 text-sm text-zinc-600">
+        <h3 className="text-lg font-semibold text-white">Demo request received</h3>
+        <p className="mt-2 text-sm text-zinc-300">
           A plant operations specialist will follow up within one business day
           with a FactoryOS walkthrough tailored to your lines.
         </p>
@@ -60,7 +59,7 @@ export function DemoForm({
   }
 
   const fieldClass =
-    "h-10 w-full rounded-lg border border-input bg-zinc-50 px-2.5 text-sm text-zinc-900 outline-none placeholder:text-zinc-400 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+    "h-10 w-full rounded-lg border border-input bg-white/5 px-2.5 text-sm text-white outline-none placeholder:text-zinc-500 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
   return (
     <form onSubmit={onSubmit} method="post" action="#" className="grid gap-4" noValidate>
@@ -89,36 +88,20 @@ export function DemoForm({
           />
         </div>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="grid gap-2">
-          <Label htmlFor="company">Company</Label>
-          <input
-            id="company"
-            name="company"
-            value={company}
-            onChange={(event) => setCompany(event.target.value)}
-            placeholder="Northline Automotive"
-            className={fieldClass}
-          />
-        </div>
-        <div className="grid gap-2">
-          <Label htmlFor="plant">
-            Plant / site
-            <span className="ml-1 font-normal text-zinc-500">(optional)</span>
-          </Label>
-          <input
-            id="plant"
-            name="plant"
-            value={plant}
-            onChange={(event) => setPlant(event.target.value)}
-            placeholder="Chennai Assembly"
-            className={fieldClass}
-          />
-        </div>
+      <div className="grid gap-2">
+        <Label htmlFor="company">Company</Label>
+        <input
+          id="company"
+          name="company"
+          value={company}
+          onChange={(event) => setCompany(event.target.value)}
+          placeholder="Northline Automotive"
+          className={fieldClass}
+        />
       </div>
       {includeMessage && (
         <div className="grid gap-2">
-          <Label htmlFor="message">What should we cover?</Label>
+          <Label htmlFor="message">Message</Label>
           <textarea
             id="message"
             name="message"

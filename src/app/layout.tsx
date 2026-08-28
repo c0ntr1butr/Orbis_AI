@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { LiveTicker } from "@/components/live-ticker";
 import { StickyDemoBar } from "@/components/sticky-demo-bar";
+import { OrbisAssistant } from "@/components/orbis-assistant";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1 pb-16 md:pb-0">{children}</main>
         <SiteFooter />
         <StickyDemoBar />
+        <OrbisAssistant />
       </body>
     </html>
   );

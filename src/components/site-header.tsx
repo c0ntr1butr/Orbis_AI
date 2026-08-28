@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Logo } from "@/components/brand/logo";
 import { buttonVariants } from "@/components/ui/button";
@@ -21,10 +21,23 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
   const [mobileProductOpen, setMobileProductOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const onProduct = pathname.startsWith("/services");
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-black/8 bg-white/85 backdrop-blur-xl">
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b backdrop-blur-xl transition-all duration-300",
+        scrolled ? "border-white/10 bg-[#07080d]/90 shadow-[0_8px_24px_rgb(0_0_0_/_25%)]" : "border-white/5 bg-[#07080d]/60"
+      )}
+    >
       <div className="mx-auto flex h-17 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" aria-label="Orbis FactoryOS home" onClick={() => setMenuOpen(false)}>
           <Logo />
@@ -35,7 +48,7 @@ export function SiteHeader() {
             href="/"
             className={cn(
               "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
-              pathname === "/" ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"
+              pathname === "/" ? "text-white" : "text-zinc-400 hover:text-white"
             )}
           >
             Home
@@ -54,7 +67,7 @@ export function SiteHeader() {
               aria-expanded={productOpen}
               className={cn(
                 "relative flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                onProduct ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"
+                onProduct ? "text-white" : "text-zinc-400 hover:text-white"
               )}
             >
               Product
@@ -66,24 +79,24 @@ export function SiteHeader() {
 
             {productOpen && (
               <div className="absolute top-full left-1/2 z-50 w-[30rem] -translate-x-1/2 pt-3">
-                <div className="grid grid-cols-2 gap-1 rounded-2xl border border-black/8 bg-white p-3 shadow-[0_16px_40px_rgb(16_17_20_/_12%)]">
+                <div className="grid grid-cols-2 gap-1 rounded-2xl border border-white/10 bg-[#12131c] p-3 shadow-[0_16px_40px_rgb(0_0_0_/_45%)]">
                   {modules.map((module) => (
                     <Link
                       key={module.slug}
                       href={module.href}
                       onClick={() => setProductOpen(false)}
-                      className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors hover:bg-black/[0.04]"
+                      className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors hover:bg-white/[0.05]"
                     >
                       <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/18 to-primary/5">
                         <module.icon className="size-4 text-primary" />
                       </span>
-                      <span className="text-xs font-medium text-zinc-800">{module.title}</span>
+                      <span className="text-xs font-medium text-zinc-200">{module.title}</span>
                     </Link>
                   ))}
                   <Link
                     href="/services"
                     onClick={() => setProductOpen(false)}
-                    className="col-span-2 mt-1 flex items-center justify-center rounded-lg border-t border-black/8 px-2.5 py-2 text-xs font-semibold text-primary hover:bg-primary/5"
+                    className="col-span-2 mt-1 flex items-center justify-center rounded-lg border-t border-white/10 px-2.5 py-2 text-xs font-semibold text-primary hover:bg-primary/5"
                   >
                     View all {modules.length} modules →
                   </Link>
@@ -100,7 +113,7 @@ export function SiteHeader() {
                 href={item.href}
                 className={cn(
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                  active ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"
+                  active ? "text-white" : "text-zinc-400 hover:text-white"
                 )}
               >
                 {item.label}
@@ -139,12 +152,12 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="max-h-[calc(100vh-4.25rem)] overflow-y-auto border-t border-black/8 bg-white px-4 py-4 lg:hidden">
+        <div className="max-h-[calc(100vh-4.25rem)] overflow-y-auto border-t border-white/10 bg-[#0d0e16] px-4 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
             <Link
               href="/"
               onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-3 py-3 text-base font-medium text-zinc-700 hover:bg-black/5"
+              className="rounded-lg px-3 py-3 text-base font-medium text-zinc-200 hover:bg-white/5"
             >
               Home
             </Link>
@@ -153,19 +166,19 @@ export function SiteHeader() {
               type="button"
               aria-expanded={mobileProductOpen}
               onClick={() => setMobileProductOpen((open) => !open)}
-              className="flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-zinc-700 hover:bg-black/5"
+              className="flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-zinc-200 hover:bg-white/5"
             >
               Product
               <ChevronDown className={cn("size-4 transition-transform", mobileProductOpen && "rotate-180")} />
             </button>
             {mobileProductOpen && (
-              <div className="mb-1 grid grid-cols-2 gap-1 rounded-lg bg-zinc-50 p-2">
+              <div className="mb-1 grid grid-cols-2 gap-1 rounded-lg bg-white/[0.03] p-2">
                 {modules.map((module) => (
                   <Link
                     key={module.slug}
                     href={module.href}
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-2 rounded-md px-2 py-2 text-xs font-medium text-zinc-700 hover:bg-white"
+                    className="flex items-center gap-2 rounded-md px-2 py-2 text-xs font-medium text-zinc-200 hover:bg-white/5"
                   >
                     <module.icon className="size-3.5 text-primary" />
                     {module.title}
@@ -179,7 +192,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-lg px-3 py-3 text-base font-medium text-zinc-700 hover:bg-black/5"
+                className="rounded-lg px-3 py-3 text-base font-medium text-zinc-200 hover:bg-white/5"
               >
                 {item.label}
               </Link>

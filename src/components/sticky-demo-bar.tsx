@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export function StickyDemoBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-black/8 bg-white/95 p-3 shadow-[0_-4px_16px_rgb(16_17_20_/_8%)] backdrop-blur-xl md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-primary/30 bg-[#0b0c12]/92 p-3 backdrop-blur-xl md:hidden">
       <Link
         href="/request-demo"
         className={cn(

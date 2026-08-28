@@ -11,8 +11,10 @@ import {
   FileSignature,
   Focus,
   LayoutDashboard,
+  LayoutGrid,
   Lock,
   MessageSquare,
+  Network,
   Package,
   Plug,
   Scale,
@@ -23,6 +25,7 @@ import {
   Truck,
   UserRound,
   Users,
+  Workflow,
   Wrench,
 } from "lucide-react";
 
@@ -431,8 +434,25 @@ export const platformCapabilities = [
 
 export const aiNativeCore = [
   { icon: Sparkles, title: "AI-Native by Design", copy: "Intelligence is built into every module from the ground up, not bolted on as a chatbot." },
-  { icon: Cloud, title: "Enterprise Cloud", copy: "Runs on infrastructure built for plant-level uptime and scale, not a proof-of-concept sandbox." },
-  { icon: Lock, title: "Secure by Design", copy: "Encrypted in transit and at rest, with tenancy isolated at the plant level from the first pilot cell." },
-  { icon: Scale, title: "Integrity & Governance", copy: "Every AI action is scoped, logged, and auditable — leadership can see what the AI did and why." },
-  { icon: Plug, title: "API-Ready Integrations", copy: "Connects to the MES, WMS, ERP, and PLC historians already running the floor." },
+  { icon: Cloud, title: "Enterprise Cloud", copy: "Built for plant-level operations, enterprise scale, and reliable deployment." },
+  { icon: Lock, title: "Secure by Design", copy: "Encryption, role-based access, and plant-level tenancy designed into the platform." },
+  { icon: Scale, title: "Integrity & Governance", copy: "AI actions are scoped, logged, and auditable, with human oversight where it matters." },
+  { icon: Plug, title: "API-Ready Integrations", copy: "Designed to connect with the MES, WMS, ERP, and industrial systems already running the floor." },
+];
+
+export const platformPillars = [
+  { icon: Network, title: "Connected Operations", copy: "Production, workforce, quality, maintenance, and warehouse on one live plant model — not five systems that don't talk to each other." },
+  { icon: LayoutGrid, title: "AI-Native Modules", copy: "Intelligence built into every module from day one, not a chatbot layered on top of a legacy dashboard." },
+  { icon: Bot, title: "Factory AI Copilot", copy: "Ask a question in plain language and get a sourced answer that can act — across the factory, not one screen." },
+  { icon: Workflow, title: "Intelligent Workflows", copy: "Recommendations become actions — a work order, a reassignment, an alert — without leaving the platform." },
+  { icon: Scale, title: "Enterprise Governance", copy: "Every AI action scoped, logged, and auditable, with human oversight where it matters." },
+];
+
+export const homeUseCases = [
+  { icon: Factory, title: "Production Intelligence", copy: "See what's affecting output before it becomes a missed dock." },
+  { icon: Users, title: "Workforce Optimization", copy: "Match certified skills to the cells that need them, before the gap shows up." },
+  { icon: Wrench, title: "Predictive Maintenance", copy: "Catch failure risk while there's still time to schedule the fix, not scramble." },
+  { icon: ShieldCheck, title: "Quality Intelligence", copy: "Turn a defect into a root cause, not just a scrap number." },
+  { icon: Package, title: "Warehouse & Material Flow", copy: "Know what's actually available before the line stops for it." },
+  { icon: BarChart3, title: "Operational Analytics", copy: "One set of figures corporate and the plant floor both trust." },
 ];

@@ -15,7 +15,7 @@ export default function ContactPage() {
       />
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <div className="surface divide-y divide-black/6 text-sm text-zinc-800">
+          <div className="surface divide-y divide-white/8 text-sm text-zinc-200">
             <div className="flex items-center gap-3 p-4">
               <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/12">
                 <Mail className="size-4 text-primary" />
@@ -60,8 +60,8 @@ export default function ContactPage() {
         </Reveal>
         <Reveal delay={80}>
           <div className="surface p-6 sm:p-8">
-            <h2 className="text-lg font-semibold tracking-tight text-zinc-900">Send a message</h2>
-            <p className="mt-1 mb-6 text-sm text-zinc-600">
+            <h2 className="text-lg font-semibold tracking-tight text-white">Send a message</h2>
+            <p className="mt-1 mb-6 text-sm text-zinc-400">
               Tell us the plant, the line, and whether OTIF, downtime, or crew
               fill is the first problem to open.
             </p>

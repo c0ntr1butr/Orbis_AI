@@ -14,9 +14,9 @@ const items = [
 export function LiveTicker() {
   const loop = [...items, ...items];
   return (
-    <div className="relative z-40 overflow-hidden border-b border-primary/15 bg-[linear-gradient(90deg,rgba(227,30,36,0.05),rgba(227,30,36,0.01)_30%,rgba(227,30,36,0.05))]">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[#fdf4f4] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[#fdf4f4] to-transparent" />
+    <div className="relative z-40 overflow-hidden border-b border-primary/20 bg-[#0b0c12]">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[#0b0c12] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[#0b0c12] to-transparent" />
       <div className="flex items-center gap-3 py-2.5">
         <span className="relative z-20 ml-4 flex shrink-0 items-center gap-1.5 rounded-full bg-live px-2.5 py-1 text-[10px] font-bold tracking-wider text-white uppercase shadow-[0_2px_8px_rgb(21_128_61_/_35%)]">
           <span className="relative flex size-1.5">
@@ -32,7 +32,7 @@ export function LiveTicker() {
             return (
               <span key={`${item}-${index}`} className="flex items-center gap-2">
                 <span className="h-1 w-1 rounded-full bg-primary" />
-                <span className="font-semibold text-zinc-800">{lead}</span>
+                <span className="font-semibold text-zinc-200">{lead}</span>
                 {tail && <span className="text-zinc-500"> · {tail}</span>}
               </span>
             );

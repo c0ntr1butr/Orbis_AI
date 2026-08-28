@@ -20,7 +20,7 @@ export function KpiTiles({ items, dense = false }: { items: Kpi[]; dense?: boole
         <div
           key={item.label}
           className={cn(
-            "kpi-pop rounded-xl border border-black/8 bg-white px-3 py-2.5 shadow-[0_1px_2px_rgb(16_17_20_/_4%)]",
+            "kpi-pop rounded-xl border border-white/10 bg-[#101119] px-3 py-2.5",
             dense && "px-2.5 py-2"
           )}
           style={{ animationDelay: `${index * 70}ms` }}
@@ -30,7 +30,7 @@ export function KpiTiles({ items, dense = false }: { items: Kpi[]; dense?: boole
               "text-lg font-semibold leading-tight sm:text-xl",
               item.tone === "live" && "text-live",
               item.tone === "risk" && "text-primary",
-              (!item.tone || item.tone === "neutral") && "text-zinc-900"
+              (!item.tone || item.tone === "neutral") && "text-white"
             )}
           >
             {item.value}
