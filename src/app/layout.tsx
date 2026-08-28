@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Orbis FactoryOS",
   },
   description:
-    "Orbis FactoryOS is the AI-native operating system for manufacturing — ten live modules, OTIF, OEE, crew fill, and a Factory AI Copilot on one plant model.",
+    "Orbis FactoryOS is the AI-native operating system for manufacturing — twelve connected modules and a Factory AI Copilot on one plant model.",
   icons: { icon: "/favicon.svg" },
 };
 

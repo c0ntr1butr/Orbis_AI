@@ -85,7 +85,7 @@ export function SiteHeader() {
                     onClick={() => setProductOpen(false)}
                     className="col-span-2 mt-1 flex items-center justify-center rounded-lg border-t border-black/8 px-2.5 py-2 text-xs font-semibold text-primary hover:bg-primary/5"
                   >
-                    View all 10 modules →
+                    View all {modules.length} modules →
                   </Link>
                 </div>
               </div>

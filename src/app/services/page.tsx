@@ -16,8 +16,8 @@ export default function ServicesPage() {
     <div>
       <PageBanner
         kicker="Product"
-        title="One platform, ten AI-native modules"
-        copy="Everything a plant runs on — production, workforce, quality, maintenance, warehouse, analytics — built AI-native from the ground up, with a Copilot that sits across all of it. Not ten logins. One factory model."
+        title="One platform, twelve AI-native modules"
+        copy="Everything a plant runs on — production, workforce, quality, maintenance, warehouse, analytics, vendors, and contracts — built AI-native from the ground up, with a Copilot that sits across all of it. Not twelve logins. One factory model."
         image="/images/factory-operations.jpg"
       />
       <ServiceSubnav current="hub" />

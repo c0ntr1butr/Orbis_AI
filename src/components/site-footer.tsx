@@ -5,7 +5,7 @@ import { Logo } from "@/components/brand/logo";
 import { modules } from "@/lib/services";
 
 const productLinks = [
-  { href: "/services", label: "All 10 modules" },
+  { href: "/services", label: `All ${modules.length} modules` },
   ...modules.slice(0, 5).map((m) => ({ href: m.href, label: m.title })),
 ];
 

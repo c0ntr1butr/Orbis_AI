@@ -390,6 +390,27 @@ export function ModuleDiagram({ widget }: { widget: ModuleWidget }) {
           ]}
         />
       );
+    case "vendor":
+      return (
+        <StageTrack
+          stages={[
+            { n: "Tier 1", label: "Preferred", tone: "running" },
+            { n: "Tier 2", label: "Approved" },
+            { n: "Tier 3", label: "Watch" },
+            { n: "Tier 4", label: "At risk", tone: "delayed" },
+          ]}
+        />
+      );
+    case "contracts":
+      return (
+        <ImpactRow
+          items={[
+            { label: "Active contracts", value: "Tracked", amount: "Live", tag: "Every supplier & customer", tone: "good" },
+            { label: "Renewals", value: "Ahead", amount: "Flagged early", tag: "Before expiry", tone: "good" },
+            { label: "Compliance", value: "Flagged", amount: "Exceptions", tag: "Surfaced, not buried", tone: "bad" },
+          ]}
+        />
+      );
     default:
       return null;
   }

@@ -51,7 +51,7 @@ export function ServiceLayout({ slug }: { slug: string }) {
   return (
     <div>
       <PageBanner
-        kicker={`Module ${module.number} / 10 · ${module.kicker}`}
+        kicker={`Module ${module.number} / ${modules.length} · ${module.kicker}`}
         title={module.title}
         copy={module.pitch}
         image={bannerImages[index % bannerImages.length]}

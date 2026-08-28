@@ -13,7 +13,6 @@ export type CarouselCard = {
   href: string;
   title: string;
   kicker: string;
-  number: string;
   signature?: boolean;
   icon: ReactNode;
 };
@@ -77,7 +76,7 @@ export function ModuleCarousel({ modules }: { modules: CarouselCard[] }) {
             <div className="absolute inset-x-0 bottom-0 p-4">
               <p className="flex items-center gap-1.5 text-[11px] font-medium text-white/75">
                 {module.icon}
-                Module {module.number} · {module.kicker}
+                {module.kicker}
               </p>
               <h3 className="mt-1 text-lg leading-snug font-semibold text-white">{module.title}</h3>
             </div>

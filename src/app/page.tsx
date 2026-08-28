@@ -2,12 +2,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { asset } from "@/lib/asset";
-import { TrustBadges } from "@/components/live-snapshot";
-import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { CopilotPreview } from "@/components/module-widgets";
 import { ModuleCarousel } from "@/components/module-carousel";
-import { modules, platformCapabilities } from "@/lib/services";
+import { modules, platformCapabilities, aiNativeCore } from "@/lib/services";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -18,7 +16,6 @@ const carouselCards = modules.map((module) => ({
   href: module.href,
   title: module.title,
   kicker: module.kicker,
-  number: module.number,
   signature: module.signature,
   icon: <module.icon className="size-3.5" />,
 }));
@@ -31,9 +28,8 @@ export default function HomePage() {
           className="hero-zoom absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${asset("/images/factory-operations.jpg")})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#07080d] via-[#07080d]/78 to-[#07080d]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07080d] via-[#07080d]/80 to-[#07080d]/35" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#07080d] via-transparent to-[#07080d]/35" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(227,30,36,0.2),transparent_50%)]" />
 
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:py-28">
           <div>
@@ -41,14 +37,14 @@ export default function HomePage() {
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
               AI-native manufacturing platform
             </p>
-            <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance text-white sm:text-6xl lg:text-[4rem] lg:leading-[1.04]">
-              The <span className="text-gradient-orbis">AI-native operating system</span>{" "}
-              for a factory that thinks for itself.
+            <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance text-white sm:text-6xl lg:text-[3.75rem] lg:leading-[1.06]">
+              Turn Factory Operations Into{" "}
+              <span className="text-gradient-orbis">Intelligent Action</span>.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-200 sm:text-lg">
-              Ten AI-native modules, one live plant model, and a Copilot that
-              names the exact kit and certified operator to recover the order
-              — before the dock closes.
+              FactoryOS connects operations, people, assets, knowledge, and
+              workflows into one AI-native manufacturing platform — helping
+              teams see what matters, decide faster, and act with confidence.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
@@ -58,32 +54,17 @@ export default function HomePage() {
                   "h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 text-sm font-semibold glow-cta hover:brightness-110"
                 )}
               >
-                See it on your lines
+                Book a FactoryOS Session
                 <ArrowRight className="size-4" />
               </Link>
-            </div>
-            <div className="mt-12 border-t border-white/15 pt-6">
-              <TrustBadges />
+              <Link
+                href="/services"
+                className="text-sm font-semibold text-white/90 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white/60"
+              >
+                Explore FactoryOS
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="border-y border-black/8 bg-zinc-50">
-        <div className="mx-auto grid max-w-6xl gap-8 divide-y divide-black/8 px-4 py-10 sm:grid-cols-4 sm:divide-x sm:divide-y-0 sm:px-6">
-          {[
-            { n: 10, suffix: "", label: "live modules on one plant model" },
-            { n: 92, suffix: "%", label: "crew fill vs certified need" },
-            { n: 30, suffix: "s", label: "for Copilot to answer, sourced" },
-            { n: 30, suffix: " min", label: "to a working plant demo" },
-          ].map((stat) => (
-            <div key={stat.label} className="pt-8 text-center first:pt-0 sm:px-6 sm:pt-0 sm:text-left sm:first:pl-0">
-              <p className="text-4xl font-semibold tracking-tight text-zinc-900">
-                <CountUp value={stat.n} suffix={stat.suffix} />
-              </p>
-              <p className="mt-2 text-xs text-zinc-500">{stat.label}</p>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -94,7 +75,7 @@ export default function HomePage() {
               <div>
                 <p className="kicker">Product</p>
                 <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-900">
-                  One platform, ten AI-native modules
+                  AI-Native Modules. One Connected Factory.
                 </h2>
               </div>
               <Link href="/services" className="text-sm font-medium text-primary hover:underline">
@@ -111,7 +92,7 @@ export default function HomePage() {
       </section>
 
       <section className="relative overflow-hidden border-y border-black/8 bg-zinc-50 py-16 sm:py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(227,30,36,0.08),transparent_55%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(227,30,36,0.06),transparent_55%)]" />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
             <span className="kicker rounded-full border border-primary/25 bg-primary/6 px-3 py-1">
@@ -119,25 +100,26 @@ export default function HomePage() {
               {copilot.kicker}
             </span>
             <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
-              {copilot.oneLiner}
+              Meet the Factory AI Copilot.
             </h2>
-            <p className="mt-3 max-w-2xl text-zinc-600">{copilot.pitch}</p>
+            <p className="mt-2 max-w-2xl text-lg text-zinc-700">
+              One intelligent assistant for the entire factory.
+            </p>
+            <p className="mt-3 max-w-2xl text-zinc-600">
+              Ask a question in plain language and Copilot draws on operations,
+              knowledge, people, assets, and workflows for a sourced answer —
+              then carries out the action once a person confirms it.
+            </p>
           </Reveal>
           <Reveal delay={80}>
             <div className="surface mt-8 p-5 sm:p-6">
               <CopilotPreview />
             </div>
           </Reveal>
-          <div className="mt-8 flex flex-wrap items-center gap-8">
-            {copilot.stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="text-2xl font-semibold text-zinc-900">{stat.value}</p>
-                <p className="mt-0.5 text-xs text-zinc-500">{stat.label}</p>
-              </div>
-            ))}
+          <div className="mt-6">
             <Link
               href={copilot.href}
-              className="ml-auto text-sm font-medium text-primary hover:underline"
+              className="text-sm font-medium text-primary hover:underline"
             >
               Meet the full Copilot →
             </Link>
@@ -177,7 +159,7 @@ export default function HomePage() {
           <Reveal>
             <p className="kicker">Present on every module</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
-              One connected platform, not ten separate tools
+              One Connected Platform. Not Separate Tools.
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -194,16 +176,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <Reveal>
+            <p className="kicker">Trust</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
+              Built AI-Native. Enterprise Ready.
+            </h2>
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {aiNativeCore.map((item, index) => (
+              <Reveal key={item.title} delay={index * 60}>
+                <div className="card-lift surface h-full p-4">
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/18 to-primary/5">
+                    <item.icon className="size-4.5 text-primary" />
+                  </span>
+                  <h3 className="mt-3 text-sm font-semibold text-zinc-900">{item.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">{item.copy}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.1),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.08),transparent_60%)]" />
         <div className="surface relative mx-auto max-w-3xl px-6 py-12 text-center sm:px-14 sm:py-16">
           <h2 className="text-3xl font-semibold tracking-tight text-balance text-zinc-900 sm:text-4xl">
-            Stop defending yesterday’s report. Sell the next recovered order.
+            Build the Factory That Acts on Intelligence.
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-zinc-600">
-            Book a 30-minute FactoryOS session. We run OTIF, crew fill, downtime,
-            and Copilot on a scenario that looks like your lines — then you decide
-            if the intelligence layer belongs in the control room.
+            Move beyond fragmented reports and disconnected workflows. Give
+            every team a connected view of operations — and an intelligent
+            assistant that turns information into action.
           </p>
           <Link
             href="/request-demo"
@@ -212,7 +218,7 @@ export default function HomePage() {
               "glow-cta mt-8 inline-flex h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-8 font-semibold"
             )}
           >
-            Request a Demo
+            Book a FactoryOS Session
             <ArrowRight className="size-4" />
           </Link>
         </div>
