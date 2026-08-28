@@ -1,4 +1,4 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Globe, Mail, MapPin, Phone } from "lucide-react";
 
 import { DemoForm } from "@/components/demo-form";
 import { PageBanner } from "@/components/page-banner";
@@ -21,7 +21,7 @@ export default function ContactPage() {
                 <Mail className="size-4 text-primary" />
               </span>
               <span>
-                hello@orbisai.tech
+                info@orbisfactoryos.ai
                 <span className="block text-zinc-500">Sales, demos, and partnerships</span>
               </span>
             </li>
@@ -30,8 +30,8 @@ export default function ContactPage() {
                 <Phone className="size-4 text-primary" />
               </span>
               <span>
-                +1 (415) 555-0148
-                <span className="block text-zinc-500">Weekdays 9:00–18:00 IST / EST overlap</span>
+                +1 714 363 1592
+                <span className="block text-zinc-500">Weekdays, business hours (ET)</span>
               </span>
             </li>
             <li className="card-lift surface flex items-start gap-4 p-4">
@@ -39,9 +39,21 @@ export default function ContactPage() {
                 <MapPin className="size-4 text-primary" />
               </span>
               <span>
-                Orbis AI Technologies
-                <span className="block text-zinc-500">Plant digitalization · FactoryOS</span>
+                Orbis AI Technologies Inc.
+                <span className="block text-zinc-500">
+                  ONYX Office Plaza, 29777 Telegraph Road, Suite 4200
+                </span>
+                <span className="block text-zinc-500">Southfield, MI 48034, USA</span>
               </span>
+            </li>
+            <li className="card-lift surface flex items-start gap-4 p-4">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">
+                <Globe className="size-4 text-primary" />
+              </span>
+              <a href="https://www.orbisfactoryos.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                www.orbisfactoryos.ai
+                <span className="block text-zinc-500">Product, docs, and pricing</span>
+              </a>
             </li>
             <li className="card-lift surface flex items-start gap-4 p-4">
               <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 
@@ -29,7 +29,7 @@ export function SiteFooter() {
             turns production and workforce data into one live plant decision loop.
           </p>
           <a
-            href="https://orbisfactoryos.netlify.app/"
+            href="https://www.orbisfactoryos.ai/"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-white"
@@ -37,6 +37,13 @@ export function SiteFooter() {
             Visit our site
             <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
+          <p className="flex items-start gap-2 text-sm text-zinc-500">
+            <MapPin className="mt-0.5 size-3.5 shrink-0 text-primary" />
+            <span>
+              ONYX Office Plaza, 29777 Telegraph Road, Suite 4200
+              <span className="block">Southfield, MI 48034, USA</span>
+            </span>
+          </p>
         </div>
 
         <div>
@@ -73,26 +80,26 @@ export function SiteFooter() {
           </nav>
           <div className="mt-6 space-y-2.5 text-sm text-zinc-400">
             <a
-              href="mailto:hello@orbisai.tech"
+              href="mailto:info@orbisfactoryos.ai"
               className="flex items-center gap-2 transition-colors hover:text-white"
             >
               <Mail className="size-3.5 text-primary" />
-              hello@orbisai.tech
+              info@orbisfactoryos.ai
             </a>
             <a
-              href="tel:+14155550148"
+              href="tel:+17143631592"
               className="flex items-center gap-2 transition-colors hover:text-white"
             >
               <Phone className="size-3.5 text-primary" />
-              +1 (415) 555-0148
+              +1 714 363 1592
             </a>
           </div>
         </div>
       </div>
       <div className="border-t border-white/5 py-5">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 text-xs text-zinc-500 sm:flex-row sm:justify-between sm:px-6">
-          <p>© {new Date().getFullYear()} Orbis AI Technologies. All rights reserved.</p>
-          <p>Plant digitalization · FactoryOS</p>
+          <p>© {new Date().getFullYear()} Orbis AI Technologies Inc. All rights reserved.</p>
+          <p>www.orbisfactoryos.ai</p>
         </div>
       </div>
     </footer>
