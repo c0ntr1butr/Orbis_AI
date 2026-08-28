@@ -5,11 +5,21 @@ import { asset } from "@/lib/asset";
 import { Reveal } from "@/components/reveal";
 import { HeroIntelligenceVisual } from "@/components/hero-intelligence-visual";
 import { FactoryCopilotChat } from "@/components/factory-copilot-chat";
+import { ModuleCarousel } from "@/components/module-carousel";
 import { modules, aiNativeCore, platformPillars, homeUseCases } from "@/lib/services";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const copilot = modules.find((m) => m.signature)!;
+
+const carouselCards = modules.map((module) => ({
+  slug: module.slug,
+  href: module.href,
+  title: module.title,
+  kicker: module.kicker,
+  signature: module.signature,
+  icon: <module.icon className="size-3.5" />,
+}));
 
 export default function HomePage() {
   return (
@@ -90,6 +100,30 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* MODULES */}
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="kicker">Product</p>
+                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                  AI-Native Modules. One Connected Factory.
+                </h2>
+              </div>
+              <Link href="/services" className="text-sm font-medium text-primary hover:underline">
+                View all modules →
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={60}>
+            <div className="mt-8">
+              <ModuleCarousel modules={carouselCards} />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* FACTORY AI COPILOT */}
       <section className="relative overflow-hidden py-16 sm:py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(227,30,36,0.1),transparent_55%)]" />
@@ -158,8 +192,13 @@ export default function HomePage() {
       </section>
 
       {/* TRUST / ENTERPRISE */}
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section className="relative overflow-hidden border-y border-white/8">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-25"
+          style={{ backgroundImage: `url(${asset("/images/factory-transform.jpg")})` }}
+        />
+        <div className="absolute inset-0 bg-[#07080d]/90" />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
           <Reveal>
             <p className="kicker">Trust</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
@@ -169,7 +208,7 @@ export default function HomePage() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {aiNativeCore.map((item, index) => (
               <Reveal key={item.title} delay={index * 60}>
-                <div className="card-lift surface h-full p-4">
+                <div className="card-lift glass h-full p-4">
                   <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/5">
                     <item.icon className="size-4.5 text-primary" />
                   </span>
@@ -200,7 +239,7 @@ export default function HomePage() {
               "glow-cta mt-8 inline-flex h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-8 font-semibold"
             )}
           >
-            Request a Demo
+            See it on your lines
             <ArrowRight className="size-4" />
           </Link>
         </div>
