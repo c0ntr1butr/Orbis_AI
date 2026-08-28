@@ -433,11 +433,11 @@ export const platformCapabilities = [
 ];
 
 export const aiNativeCore = [
-  { icon: Sparkles, title: "AI-Native by Design", copy: "Intelligence is built into every module from the ground up, not bolted on as a chatbot." },
-  { icon: Cloud, title: "Enterprise Cloud", copy: "Built for plant-level operations, enterprise scale, and reliable deployment." },
-  { icon: Lock, title: "Secure by Design", copy: "Encryption, role-based access, and plant-level tenancy designed into the platform." },
-  { icon: Scale, title: "Integrity & Governance", copy: "AI actions are scoped, logged, and auditable, with human oversight where it matters." },
-  { icon: Plug, title: "API-Ready Integrations", copy: "Designed to connect with the MES, WMS, ERP, and industrial systems already running the floor." },
+  { icon: Sparkles, title: "AI-Native by Design", copy: "Intelligence built into every module." },
+  { icon: Cloud, title: "Enterprise Cloud", copy: "Built for plant-level operations and scale." },
+  { icon: Lock, title: "Secure by Design", copy: "Encryption, RBAC, and isolated enterprise environments." },
+  { icon: Scale, title: "Integrity & Governance", copy: "AI actions scoped, logged, and auditable." },
+  { icon: Plug, title: "API-Ready Integrations", copy: "Connect with MES, WMS, ERP, and industrial systems." },
 ];
 
 export const platformPillars = [

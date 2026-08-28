@@ -32,7 +32,7 @@ const RULES: QaRule[] = [
       "Three things need attention this shift: recovering the at-risk orders on Line 3, moving a certified welder to Cell 4 before OEE slips further, and confirming the SMT changeover against a thin second shift.",
   },
   {
-    match: /attention|area|watch/i,
+    match: /attention|area|watch|needs.*today/i,
     response:
       "Cell 4 needs attention first — OEE has trended down for two shifts and the next certified skill isn't scheduled until tomorrow. Line 3's kit shortage is contained for now.",
   },
@@ -53,11 +53,28 @@ const FALLBACK =
   "Once connected to your plant data, Copilot answers exactly this kind of question in seconds — sourced from your live operations, not a script. Book a session to see it running on your lines.";
 
 const SUGGESTIONS = [
-  "What's affecting today's production?",
-  "Show me the current operational priorities.",
-  "Which area needs attention?",
-  "Help me understand this issue.",
+  "What needs attention today?",
+  "What's affecting production?",
+  "Show current operational priorities.",
 ];
+
+function StreamingText({ text }: { text: string }) {
+  const [shown, setShown] = useState("");
+
+  useEffect(() => {
+    setShown("");
+    let i = 0;
+    const id = window.setInterval(() => {
+      i += 3;
+      setShown(text.slice(0, i));
+      if (i >= text.length) window.clearInterval(id);
+    }, 14);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return <>{shown}</>;
+}
 
 export function FactoryCopilotChat() {
   const [messages, setMessages] = useState<Message[]>([
@@ -115,7 +132,7 @@ export function FactoryCopilotChat() {
                   : "rounded-xl rounded-bl-sm border border-white/10 bg-white/[0.03] px-3.5 py-2.5 text-sm leading-relaxed text-zinc-200"
               }
             >
-              {m.text}
+              {m.role === "ai" ? <StreamingText text={m.text} /> : m.text}
             </div>
             {m.actions && (
               <div className="mt-2 flex flex-wrap gap-1.5">

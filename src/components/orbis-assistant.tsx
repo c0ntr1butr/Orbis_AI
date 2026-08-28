@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { MessageCircle, Send, Sparkles, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+
+import { DEFAULT_HINT, setAssistantHint, subscribeAssistantHint } from "@/lib/assistant-hint";
 
 type Cta = { label: string; href: string };
 type ChatEntry = { role: "bot" | "user"; text: string; cta?: Cta };
@@ -34,10 +37,16 @@ const RULES: Rule[] = [
     cta: { label: "Explore the platform", href: "/services" },
   },
   {
-    match: /copilot/i,
+    match: /copilot|factory question/i,
     reply:
       "Factory AI Copilot is your intelligent assistant for the whole factory. Ask a plain-language question and it draws on live operations and workflows for a sourced answer — then acts once you confirm.",
     cta: { label: "Meet the Copilot", href: "/services/copilot" },
+  },
+  {
+    match: /use case|example|industry/i,
+    reply:
+      "FactoryOS runs across production, workforce, maintenance, quality, warehouse, and analytics use cases — every one framed around a business outcome, not a dashboard feature.",
+    cta: { label: "See use cases", href: "/use-cases" },
   },
   {
     match: /demo|trial|try it|see it/i,
@@ -60,23 +69,52 @@ const FALLBACK: Omit<Rule, "match"> = {
 
 const SUGGESTIONS = ["What is FactoryOS?", "What can it do?", "Tell me about the Copilot", "I want a demo"];
 
+const ROUTE_HINTS: Record<string, string> = {
+  "/": "Want to see how FactoryOS works?",
+  "/services": "Explore how FactoryOS connects operations.",
+  "/use-cases": "Looking for a manufacturing use case?",
+  "/contact": "Ready to explore FactoryOS?",
+  "/request-demo": "Ready to explore FactoryOS?",
+};
+
 export function OrbisAssistant() {
+  const pathname = usePathname();
+  const [hint, setHint] = useState(DEFAULT_HINT);
   const [open, setOpen] = useState(false);
+  const [touched, setTouched] = useState(false);
   const [history, setHistory] = useState<ChatEntry[]>([
-    { role: "bot", text: "Hi, I'm Orbis AI. What would you like to explore?" },
+    { role: "bot", text: `Hi, I'm Orbis AI. ${DEFAULT_HINT}` },
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => subscribeAssistantHint(setHint), []);
+
+  useEffect(() => {
+    const base = ROUTE_HINTS[pathname] ?? (pathname.startsWith("/services/") ? "Try asking me a factory question." : DEFAULT_HINT);
+    setAssistantHint(base);
+  }, [pathname]);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, [history, typing]);
 
+  function toggle() {
+    setOpen((o) => {
+      const next = !o;
+      if (next && !touched) {
+        setHistory([{ role: "bot", text: `Hi, I'm Orbis AI. ${hint}` }]);
+      }
+      return next;
+    });
+  }
+
   function ask(text: string) {
     const trimmed = text.trim();
     if (!trimmed || typing) return;
+    setTouched(true);
     setHistory((h) => [...h, { role: "user", text: trimmed }]);
     setInput("");
     setTyping(true);
@@ -88,10 +126,10 @@ export function OrbisAssistant() {
   }
 
   return (
-    <div className="fixed right-5 bottom-24 z-60 md:bottom-5">
+    <div className="fixed right-5 bottom-24 z-60 flex flex-col items-end md:bottom-5">
       {open && (
-        <div className="animate-in fade-in slide-in-from-bottom-2 mb-3 flex w-[19rem] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0d0e16] shadow-[0_24px_60px_rgb(0_0_0_/_55%)] duration-200 sm:w-80">
-          <div className="flex items-center justify-between border-b border-white/8 bg-white/[0.02] px-4 py-3">
+        <div className="animate-in fade-in zoom-in-95 slide-in-from-bottom-2 mb-3 flex w-[19rem] flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0d0e16]/55 shadow-[0_24px_60px_rgb(0_0_0_/_55%)] backdrop-blur-2xl duration-200 sm:w-80">
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
             <p className="flex items-center gap-2 text-sm font-semibold text-white">
               <Sparkles className="size-4 text-primary" />
               Orbis AI
@@ -100,7 +138,7 @@ export function OrbisAssistant() {
               type="button"
               aria-label="Close Orbis AI assistant"
               onClick={() => setOpen(false)}
-              className="text-zinc-500 transition-colors hover:text-white"
+              className="text-zinc-400 transition-colors hover:text-white"
             >
               <X className="size-4" />
             </button>
@@ -113,7 +151,7 @@ export function OrbisAssistant() {
                   className={
                     entry.role === "user"
                       ? "rounded-xl rounded-br-sm bg-primary px-3 py-2 text-xs text-white"
-                      : "rounded-xl rounded-bl-sm border border-white/10 bg-white/[0.03] px-3 py-2 text-xs leading-relaxed text-zinc-200"
+                      : "rounded-xl rounded-bl-sm border border-white/10 bg-white/[0.06] px-3 py-2 text-xs leading-relaxed text-zinc-100 backdrop-blur-sm"
                   }
                 >
                   {entry.text}
@@ -129,15 +167,15 @@ export function OrbisAssistant() {
               </div>
             ))}
             {typing && (
-              <div className="flex w-fit items-center gap-1 rounded-xl rounded-bl-sm border border-white/10 bg-white/[0.03] px-3 py-2.5">
-                <span className="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:-0.3s]" />
-                <span className="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:-0.15s]" />
-                <span className="size-1.5 animate-bounce rounded-full bg-zinc-400" />
+              <div className="flex w-fit items-center gap-1 rounded-xl rounded-bl-sm border border-white/10 bg-white/[0.06] px-3 py-2.5 backdrop-blur-sm">
+                <span className="size-1.5 animate-bounce rounded-full bg-zinc-300 [animation-delay:-0.3s]" />
+                <span className="size-1.5 animate-bounce rounded-full bg-zinc-300 [animation-delay:-0.15s]" />
+                <span className="size-1.5 animate-bounce rounded-full bg-zinc-300" />
               </div>
             )}
           </div>
 
-          <div className="border-t border-white/8 p-3">
+          <div className="border-t border-white/10 p-3">
             <div className="mb-2 flex flex-wrap gap-1.5">
               {SUGGESTIONS.map((q) => (
                 <button
@@ -145,7 +183,7 @@ export function OrbisAssistant() {
                   type="button"
                   onClick={() => ask(q)}
                   disabled={typing}
-                  className="rounded-full border border-white/10 px-2.5 py-1 text-[11px] text-zinc-300 transition-colors hover:border-primary/40 hover:text-white disabled:opacity-50"
+                  className="rounded-full border border-white/15 px-2.5 py-1 text-[11px] text-zinc-200 transition-colors hover:border-primary/40 hover:text-white disabled:opacity-50"
                 >
                   {q}
                 </button>
@@ -154,7 +192,7 @@ export function OrbisAssistant() {
                 type="button"
                 onClick={() => ask("I'd like to talk to a person")}
                 disabled={typing}
-                className="flex items-center gap-1 rounded-full border border-primary/25 bg-primary/8 px-2.5 py-1 text-[11px] text-primary transition-colors hover:bg-primary/15 disabled:opacity-50"
+                className="flex items-center gap-1 rounded-full border border-primary/25 bg-primary/10 px-2.5 py-1 text-[11px] text-primary transition-colors hover:bg-primary/20 disabled:opacity-50"
               >
                 <UserRound className="size-3" />
                 Talk to a person
@@ -171,7 +209,7 @@ export function OrbisAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask Orbis AI..."
-                className="h-9 flex-1 rounded-full border border-white/10 bg-white/5 px-3.5 text-xs text-white outline-none placeholder:text-zinc-500 focus-visible:border-primary/50"
+                className="h-9 flex-1 rounded-full border border-white/15 bg-white/5 px-3.5 text-xs text-white outline-none placeholder:text-zinc-400 focus-visible:border-primary/50"
               />
               <button
                 type="submit"
@@ -186,9 +224,15 @@ export function OrbisAssistant() {
         </div>
       )}
 
+      {!open && (
+        <div key={hint} className="animate-in fade-in slide-in-from-bottom-1 mb-3 max-w-52 rounded-2xl rounded-br-sm border border-white/15 bg-[#0d0e16]/55 px-3.5 py-2.5 text-xs text-zinc-100 shadow-[0_12px_30px_rgb(0_0_0_/_35%)] backdrop-blur-2xl duration-300">
+          {hint}
+        </div>
+      )}
+
       <button
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={toggle}
         aria-label={open ? "Close Orbis AI assistant" : "Open Orbis AI assistant"}
         className="flex size-13 items-center justify-center rounded-full bg-gradient-to-r from-[#8B0000] to-primary text-white shadow-[0_10px_30px_rgb(227_30_36_/_45%)] transition-transform hover:scale-105"
       >
