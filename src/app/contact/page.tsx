@@ -13,60 +13,50 @@ export default function ContactPage() {
         copy="Whether you are scoping a FactoryOS pilot or need a security review, this reaches the same team that runs plant demos."
         image="/images/factory-operations.jpg"
       />
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <ul className="space-y-3 text-sm text-zinc-800">
-            <li className="card-lift surface flex items-start gap-4 p-4">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">
+          <div className="surface divide-y divide-black/6 text-sm text-zinc-800">
+            <div className="flex items-center gap-3 p-4">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/12">
                 <Mail className="size-4 text-primary" />
               </span>
-              <span>
+              <a href="mailto:info@orbisfactoryos.ai" className="hover:text-primary">
                 info@orbisfactoryos.ai
-                <span className="block text-zinc-500">Sales, demos, and partnerships</span>
-              </span>
-            </li>
-            <li className="card-lift surface flex items-start gap-4 p-4">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">
+                <span className="ml-1.5 text-zinc-500">Sales, demos, partnerships</span>
+              </a>
+            </div>
+            <div className="flex items-center gap-3 p-4">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/12">
                 <Phone className="size-4 text-primary" />
               </span>
-              <span>
+              <a href="tel:+17143631592" className="hover:text-primary">
                 +1 714 363 1592
-                <span className="block text-zinc-500">Weekdays, business hours (ET)</span>
-              </span>
-            </li>
-            <li className="card-lift surface flex items-start gap-4 p-4">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">
+                <span className="ml-1.5 text-zinc-500">Weekdays, business hours (ET)</span>
+              </a>
+            </div>
+            <div className="flex items-center gap-3 p-4">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/12">
                 <MapPin className="size-4 text-primary" />
               </span>
               <span>
-                Orbis AI Technologies Inc.
-                <span className="block text-zinc-500">
-                  ONYX Office Plaza, 29777 Telegraph Road, Suite 4200
-                </span>
-                <span className="block text-zinc-500">Southfield, MI 48034, USA</span>
+                ONYX Office Plaza, 29777 Telegraph Road, Suite 4200
+                <span className="ml-1.5 text-zinc-500">Southfield, MI 48034, USA</span>
               </span>
-            </li>
-            <li className="card-lift surface flex items-start gap-4 p-4">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">
+            </div>
+            <div className="flex items-center gap-3 p-4">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/12">
                 <Globe className="size-4 text-primary" />
               </span>
-              <a href="https://www.orbisfactoryos.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900">
+              <a href="https://www.orbisfactoryos.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
                 www.orbisfactoryos.ai
-                <span className="block text-zinc-500">Product, docs, and pricing</span>
+                <span className="ml-1.5 text-zinc-500">Product, docs, and pricing</span>
               </a>
-            </li>
-            <li className="card-lift surface flex items-start gap-4 p-4">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12">
-                <Clock className="size-4 text-primary" />
-              </span>
-              <span>
-                Reply within one business day
-                <span className="block text-zinc-500">
-                  For a live walkthrough, use Request for Demo instead of this form.
-                </span>
-              </span>
-            </li>
-          </ul>
+            </div>
+          </div>
+          <p className="mt-3 flex items-center gap-2 px-1 text-xs text-zinc-500">
+            <Clock className="size-3.5 text-primary" />
+            Reply within one business day — for a live walkthrough, use Request for Demo.
+          </p>
         </Reveal>
         <Reveal delay={80}>
           <div className="surface p-6 sm:p-8">

@@ -6,12 +6,22 @@ import { TrustBadges } from "@/components/live-snapshot";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { CopilotPreview } from "@/components/module-widgets";
+import { ModuleCarousel } from "@/components/module-carousel";
 import { modules, platformCapabilities } from "@/lib/services";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const copilot = modules.find((m) => m.signature)!;
-const gridModules = modules.filter((m) => !m.signature);
+
+const carouselCards = modules.map((module) => ({
+  slug: module.slug,
+  href: module.href,
+  title: module.title,
+  kicker: module.kicker,
+  number: module.number,
+  signature: module.signature,
+  icon: <module.icon className="size-3.5" />,
+}));
 
 export default function HomePage() {
   return (
@@ -95,22 +105,11 @@ export default function HomePage() {
               </Link>
             </div>
           </Reveal>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {gridModules.map((module, index) => (
-              <Reveal key={module.slug} delay={index * 50}>
-                <Link href={module.href} className="card-lift surface flex h-full flex-col p-5">
-                  <div className="flex items-start justify-between">
-                    <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/5">
-                      <module.icon className="size-4.5 text-primary" />
-                    </span>
-                    <span className="font-mono text-[11px] text-zinc-400">{module.number}</span>
-                  </div>
-                  <h3 className="mt-3 text-sm font-semibold text-zinc-900">{module.title}</h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">{module.oneLiner}</p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={60}>
+            <div className="mt-8">
+              <ModuleCarousel modules={carouselCards} />
+            </div>
+          </Reveal>
         </div>
       </section>
 

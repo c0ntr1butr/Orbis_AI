@@ -135,6 +135,14 @@
   box-shadow: 0 1px 2px rgb(16 17 20 / 4%);
 }
 
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility bg-dot-grid {
   background-image: radial-gradient(rgb(0 0 0 / 10%) 1px, transparent 1px);
   background-size: 26px 26px;
