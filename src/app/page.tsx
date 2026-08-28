@@ -39,16 +39,16 @@ export default function HomePage() {
           <div>
             <p className="kicker rounded-full border border-primary/25 bg-primary/8 px-3 py-1.5">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
-              Intelligence layer for manufacturing
+              AI-native manufacturing platform
             </p>
             <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance text-white sm:text-6xl lg:text-[4rem] lg:leading-[1.04]">
-              The <span className="text-gradient-orbis">intelligence layer</span>{" "}
-              for a factory this alive.
+              The <span className="text-gradient-orbis">AI-native operating system</span>{" "}
+              for a factory that thinks for itself.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-200 sm:text-lg">
-              One platform, ten live modules, and an AI Copilot that tells
-              supervisors which kit and which certified operator recover the
-              order — before the dock closes.
+              Ten AI-native modules, one live plant model, and a Copilot that
+              names the exact kit and certified operator to recover the order
+              — before the dock closes.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
@@ -61,9 +61,6 @@ export default function HomePage() {
                 See it on your lines
                 <ArrowRight className="size-4" />
               </Link>
-              <span className="text-xs text-zinc-300">
-                30-minute working demo · no slide tour
-              </span>
             </div>
             <div className="mt-12 border-t border-white/15 pt-6">
               <TrustBadges />
@@ -97,7 +94,7 @@ export default function HomePage() {
               <div>
                 <p className="kicker">Product</p>
                 <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-900">
-                  One platform, ten live modules
+                  One platform, ten AI-native modules
                 </h2>
               </div>
               <Link href="/services" className="text-sm font-medium text-primary hover:underline">

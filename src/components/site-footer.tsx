@@ -22,8 +22,9 @@ export function SiteFooter() {
         <div className="max-w-sm space-y-4">
           <Logo />
           <p className="text-sm leading-relaxed text-zinc-600">
-            Orbis AI Technologies builds FactoryOS — the intelligence layer that
-            turns production and workforce data into one live plant decision loop.
+            Orbis AI Technologies builds FactoryOS — the AI-native operating
+            system that turns production and workforce data into one live
+            plant decision loop.
           </p>
           <a
             href="https://www.orbisfactoryos.ai/"
