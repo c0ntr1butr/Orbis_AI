@@ -87,23 +87,6 @@ export default function HomePage() {
         </section>
       </SectionHint>
 
-      {/* PLATFORM */}
-      <SectionHint hint="Explore how FactoryOS connects operations.">
-        <section className="relative bg-[#0a0b12] py-16 sm:py-20">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <Reveal>
-              <p className="kicker">Platform</p>
-              <h2 className="mt-2 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                One Intelligent Platform For Modern Manufacturing
-              </h2>
-            </Reveal>
-            <div className="mt-12">
-              <SymbolGrid items={platformPillars} columns={5} />
-            </div>
-          </div>
-        </section>
-      </SectionHint>
-
       {/* MODULES */}
       <SectionHint hint="Explore how FactoryOS connects operations.">
         <section className="relative bg-[#0a0b12] py-16 sm:py-20">
@@ -173,6 +156,23 @@ export default function HomePage() {
               <Reveal delay={100}>
                 <FactoryCopilotChat />
               </Reveal>
+            </div>
+          </div>
+        </section>
+      </SectionHint>
+
+      {/* PLATFORM */}
+      <SectionHint hint="See how it all connects.">
+        <section className="relative bg-[#0a0b12] py-16 sm:py-20">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal>
+              <p className="kicker">Platform</p>
+              <h2 className="mt-2 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                One Intelligent Platform For Modern Manufacturing
+              </h2>
+            </Reveal>
+            <div className="mt-12">
+              <SymbolGrid items={platformPillars} columns={5} />
             </div>
           </div>
         </section>
