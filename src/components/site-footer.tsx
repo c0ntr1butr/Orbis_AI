@@ -12,7 +12,7 @@ const productLinks = [
 const companyLinks = [
   { href: "/use-cases", label: "Use cases" },
   { href: "/contact", label: "Contact us" },
-  { href: "/request-demo", label: "Request a demo" },
+  { href: "/request-demo", label: "See it on your lines" },
 ];
 
 export function SiteFooter() {

@@ -85,7 +85,7 @@ export function ServiceLayout({ slug }: { slug: string }) {
             "glow-cta mt-10 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold"
           )}
         >
-          Request a demo of this module
+          See it on your lines
         </Link>
       </div>
       <CtaBand />

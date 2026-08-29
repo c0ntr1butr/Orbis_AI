@@ -13,7 +13,7 @@ export function StickyDemoBar() {
           "h-11 w-full rounded-full bg-gradient-to-r from-[#8B0000] to-primary font-semibold glow-cta"
         )}
       >
-        Request for Demo
+        See it on your lines
       </Link>
     </div>
   );

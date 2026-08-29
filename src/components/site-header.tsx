@@ -70,7 +70,7 @@ export function SiteHeader() {
               "h-10 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-5 text-sm font-semibold text-white glow-cta hover:brightness-110"
             )}
           >
-            Request for Demo
+            See it on your lines
           </Link>
         </div>
 
@@ -109,7 +109,7 @@ export function SiteHeader() {
                 "mt-3 h-11 rounded-full bg-gradient-to-r from-[#8B0000] to-primary font-semibold"
               )}
             >
-              Request for Demo
+              See it on your lines
             </Link>
           </nav>
         </div>

@@ -59,7 +59,7 @@ export function CtaBand() {
             "glow-cta mt-7 inline-flex h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-8 font-semibold"
           )}
         >
-          Request for Demo
+          See it on your lines
         </Link>
       </div>
     </section>

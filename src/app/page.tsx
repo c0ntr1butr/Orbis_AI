@@ -6,6 +6,7 @@ import { Reveal } from "@/components/reveal";
 import { HeroIntelligenceVisual } from "@/components/hero-intelligence-visual";
 import { FactoryCopilotChat } from "@/components/factory-copilot-chat";
 import { SectionHint } from "@/components/section-hint";
+import { SymbolGrid } from "@/components/symbol-grid";
 import { modules, aiNativeCore, platformPillars, homeUseCases } from "@/lib/services";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -49,7 +50,7 @@ export default function HomePage() {
                     "h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 text-sm font-semibold glow-cta hover:brightness-110"
                   )}
                 >
-                  Request a Demo
+                  See it on your lines
                   <ArrowRight className="size-4" />
                 </Link>
                 <Link
@@ -71,7 +72,6 @@ export default function HomePage() {
       {/* PLATFORM */}
       <SectionHint hint="Explore how FactoryOS connects operations.">
         <section className="relative bg-[#0a0b12] py-16 sm:py-20">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
               <p className="kicker">Platform</p>
@@ -79,18 +79,8 @@ export default function HomePage() {
                 One Intelligent Platform For Modern Manufacturing
               </h2>
             </Reveal>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-              {platformPillars.map((item, index) => (
-                <Reveal key={item.title} delay={index * 60}>
-                  <div className="card-lift surface h-full p-5">
-                    <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
-                      <item.icon className="size-5 text-primary" />
-                    </span>
-                    <h3 className="mt-4 text-sm font-semibold text-white">{item.title}</h3>
-                    <p className="mt-2 text-xs leading-relaxed text-zinc-400">{item.copy}</p>
-                  </div>
-                </Reveal>
-              ))}
+            <div className="mt-12">
+              <SymbolGrid items={platformPillars} columns={5} />
             </div>
           </div>
         </section>
@@ -147,7 +137,6 @@ export default function HomePage() {
       {/* USE CASES */}
       <SectionHint hint="Looking for a manufacturing use case?">
         <section className="relative bg-[#0a0b12] py-16 sm:py-20">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
               <p className="kicker">Use cases</p>
@@ -155,16 +144,8 @@ export default function HomePage() {
                 Intelligence Across The Factory
               </h2>
             </Reveal>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {homeUseCases.map((item, index) => (
-                <Reveal key={item.title} delay={index * 60}>
-                  <div className="card-lift surface h-full p-5">
-                    <item.icon className="size-5 text-primary" />
-                    <h3 className="mt-3 text-sm font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">{item.copy}</p>
-                  </div>
-                </Reveal>
-              ))}
+            <div className="mt-12">
+              <SymbolGrid items={homeUseCases} columns={3} />
             </div>
           </div>
         </section>
@@ -184,24 +165,8 @@ export default function HomePage() {
               Built AI-Native. Enterprise Ready.
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-            {aiNativeCore.map((item, index) => (
-              <Reveal key={item.title} delay={index * 80}>
-                <div className="flex flex-col items-center text-center">
-                  <div
-                    className="float-card relative flex items-center justify-center"
-                    style={{ animationDelay: `${index * 0.35}s` }}
-                  >
-                    <span className="absolute inline-flex size-16 animate-ping rounded-full bg-primary/20" style={{ animationDuration: "3s" }} />
-                    <span className="orbis-glow relative flex size-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/25 to-primary/5 backdrop-blur-sm">
-                      <item.icon className="size-6 text-primary" />
-                    </span>
-                  </div>
-                  <h3 className="mt-4 text-sm font-semibold text-white">{item.title}</h3>
-                  <p className="mt-1.5 max-w-[15rem] text-xs leading-relaxed text-zinc-400">{item.copy}</p>
-                </div>
-              </Reveal>
-            ))}
+          <div className="mt-12">
+            <SymbolGrid items={aiNativeCore} columns={5} />
           </div>
         </div>
       </section>
@@ -224,7 +189,7 @@ export default function HomePage() {
               "glow-cta mt-8 inline-flex h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-8 font-semibold"
             )}
           >
-            Request a Demo
+            See it on your lines
             <ArrowRight className="size-4" />
           </Link>
         </div>

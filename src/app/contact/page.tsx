@@ -55,7 +55,7 @@ export default function ContactPage() {
           </div>
           <p className="mt-3 flex items-center gap-2 px-1 text-xs text-zinc-500">
             <Clock className="size-3.5 text-primary" />
-            Reply within one business day — for a live walkthrough, use Request for Demo.
+            Reply within one business day — for a live walkthrough, see it on your lines instead of this form.
           </p>
         </Reveal>
         <Reveal delay={80}>

@@ -23,7 +23,7 @@ const RULES: Rule[] = [
     match: /price|pricing|cost|how much/i,
     reply:
       "Pricing depends on the modules and number of lines in your pilot — the fastest way to get a real number is a short working session where we scope it against your plant.",
-    cta: { label: "Request a Demo", href: "/request-demo" },
+    cta: { label: "See it on your lines", href: "/request-demo" },
   },
   {
     match: /what (is|'s) factoryos|about factoryos/i,
@@ -52,7 +52,7 @@ const RULES: Rule[] = [
     match: /demo|trial|try it|see it/i,
     reply:
       "A FactoryOS session is the fastest way to see this on your own lines — the closest thing to trying the product before it's installed anywhere.",
-    cta: { label: "Request a Demo", href: "/request-demo" },
+    cta: { label: "See it on your lines", href: "/request-demo" },
   },
   {
     match: /secur|governance|complian|audit/i,
