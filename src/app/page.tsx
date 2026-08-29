@@ -7,11 +7,29 @@ import { HeroIntelligenceVisual } from "@/components/hero-intelligence-visual";
 import { FactoryCopilotChat } from "@/components/factory-copilot-chat";
 import { SectionHint } from "@/components/section-hint";
 import { SymbolGrid } from "@/components/symbol-grid";
+import { PhotoCarousel } from "@/components/photo-carousel";
 import { modules, aiNativeCore, platformPillars, homeUseCases } from "@/lib/services";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const copilot = modules.find((m) => m.signature)!;
+
+const moduleCards = modules.map((module) => ({
+  key: module.slug,
+  href: module.href,
+  title: module.title,
+  kicker: module.kicker,
+  badge: module.signature ? "Signature" : undefined,
+  icon: <module.icon className="size-3.5" />,
+}));
+
+const useCaseCards = homeUseCases.map((item) => ({
+  key: item.title,
+  href: "/use-cases",
+  title: item.title,
+  kicker: "Use case",
+  icon: <item.icon className="size-3.5" />,
+}));
 
 export default function HomePage() {
   return (
@@ -86,6 +104,32 @@ export default function HomePage() {
         </section>
       </SectionHint>
 
+      {/* MODULES */}
+      <SectionHint hint="Explore how FactoryOS connects operations.">
+        <section className="relative bg-[#0a0b12] py-16 sm:py-20">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal>
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="kicker">Product</p>
+                  <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                    AI-Native Modules. One Connected Factory.
+                  </h2>
+                </div>
+                <Link href="/services" className="text-sm font-medium text-primary hover:underline">
+                  View all modules →
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={60}>
+              <div className="mt-8">
+                <PhotoCarousel items={moduleCards} ariaPrefix="module" />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      </SectionHint>
+
       {/* FACTORY AI COPILOT */}
       <SectionHint hint="Try asking me a factory question.">
         <section className="relative overflow-hidden bg-[#0a0b12] py-16 sm:py-20">
@@ -144,9 +188,11 @@ export default function HomePage() {
                 Intelligence Across The Factory
               </h2>
             </Reveal>
-            <div className="mt-12">
-              <SymbolGrid items={homeUseCases} columns={3} />
-            </div>
+            <Reveal delay={60}>
+              <div className="mt-8">
+                <PhotoCarousel items={useCaseCards} imageOffset={1} ariaPrefix="use case" />
+              </div>
+            </Reveal>
           </div>
         </section>
       </SectionHint>
