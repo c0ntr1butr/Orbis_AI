@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { CtaBand, PageBanner } from "@/components/page-banner";
 import { KpiTiles } from "@/components/kpi-tiles";
 import { ModuleDiagram } from "@/components/module-widgets";
+import { Reveal } from "@/components/reveal";
 import { modules } from "@/lib/services";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -48,45 +50,85 @@ export function ServiceLayout({ slug }: { slug: string }) {
   const module = modules[index];
   if (!module) return null;
 
+  const prev = modules[(index - 1 + modules.length) % modules.length];
+  const next = modules[(index + 1) % modules.length];
+
   return (
     <div>
       <PageBanner
-        kicker={`Module ${module.number} / ${modules.length} · ${module.kicker}`}
+        kicker={`Module ${module.number} · ${module.kicker}`}
         title={module.title}
         copy={module.pitch}
         image={bannerImages[index % bannerImages.length]}
       />
       <ServiceSubnav current={slug} />
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="mb-10">
-          <p className="kicker">Operational KPIs → ROI</p>
-          <div className="mt-4">
-            <KpiTiles items={module.kpis} />
+        <Reveal>
+          <div className="mb-10">
+            <p className="kicker">Operational KPIs → ROI</p>
+            <div className="mt-4">
+              <KpiTiles items={module.kpis} />
+            </div>
           </div>
-        </div>
-        <div className="surface p-4 sm:p-6">
-          <ModuleDiagram widget={module.widget} />
-        </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="surface card-lift p-4 sm:p-6">
+            <ModuleDiagram widget={module.widget} />
+          </div>
+        </Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {module.highlights.map((item) => (
-            <article key={item.title} className="card-lift surface p-5">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
-                <item.icon className="size-5 text-primary" />
-              </span>
-              <h2 className="mt-3 font-semibold text-white">{item.title}</h2>
-              <p className="mt-2 text-sm text-zinc-400">{item.copy}</p>
-            </article>
+          {module.highlights.map((item, i) => (
+            <Reveal key={item.title} delay={i * 80}>
+              <article className="card-lift surface h-full p-5">
+                <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5">
+                  <item.icon className="size-5 text-primary" />
+                </span>
+                <h2 className="mt-3 font-semibold text-white">{item.title}</h2>
+                <p className="mt-2 text-sm text-zinc-400">{item.copy}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
-        <Link
-          href="/request-demo"
-          className={cn(
-            buttonVariants({ size: "lg" }),
-            "glow-cta mt-10 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold"
-          )}
-        >
-          See it on your lines
-        </Link>
+        <Reveal delay={120}>
+          <Link
+            href="/request-demo"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "glow-cta mt-10 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold"
+            )}
+          >
+            See it on your lines
+          </Link>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-16 grid gap-4 border-t border-white/10 pt-10 sm:grid-cols-2">
+            <Link
+              href={prev.href}
+              className="card-lift surface group flex items-center gap-4 p-5"
+            >
+              <ArrowLeft className="size-4 shrink-0 text-zinc-500 transition-transform group-hover:-translate-x-1 group-hover:text-primary" />
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">
+                  Previous module
+                </p>
+                <p className="mt-1 truncate font-semibold text-white">{prev.title}</p>
+              </div>
+            </Link>
+            <Link
+              href={next.href}
+              className="card-lift surface group flex items-center justify-end gap-4 p-5 text-right"
+            >
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">
+                  Next module
+                </p>
+                <p className="mt-1 truncate font-semibold text-white">{next.title}</p>
+              </div>
+              <ArrowRight className="size-4 shrink-0 text-zinc-500 transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+            </Link>
+          </div>
+        </Reveal>
       </div>
       <CtaBand />
     </div>

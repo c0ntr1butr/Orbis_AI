@@ -69,12 +69,16 @@ export function PhotoCarousel({
         {items.map((item, index) => {
           const cardClass =
             "group relative h-64 w-64 shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 sm:h-72 sm:w-72";
+          const duotone = index % 2 === 1;
           const content = (
             <>
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                className={`absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 ${duotone ? "grayscale" : ""}`}
                 style={{ backgroundImage: `url(${asset(images[(index + imageOffset) % images.length])})` }}
               />
+              {duotone && (
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/45 via-primary/15 to-transparent mix-blend-color" />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/5" />
               {item.badge && (
                 <span className="absolute top-3 right-3 rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold text-white">

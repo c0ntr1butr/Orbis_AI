@@ -447,12 +447,3 @@ export const platformPillars = [
   { icon: Workflow, title: "Intelligent Workflows", copy: "Recommendations become actions — a work order, a reassignment, an alert — without leaving the platform." },
   { icon: Scale, title: "Enterprise Governance", copy: "Every AI action scoped, logged, and auditable, with human oversight where it matters." },
 ];
-
-export const homeUseCases = [
-  { icon: Factory, title: "Production Intelligence", copy: "See what's affecting output before it becomes a missed dock." },
-  { icon: Users, title: "Workforce Optimization", copy: "Match certified skills to the cells that need them, before the gap shows up." },
-  { icon: Wrench, title: "Predictive Maintenance", copy: "Catch failure risk while there's still time to schedule the fix, not scramble." },
-  { icon: ShieldCheck, title: "Quality Intelligence", copy: "Turn a defect into a root cause, not just a scrap number." },
-  { icon: Package, title: "Warehouse & Material Flow", copy: "Know what's actually available before the line stops for it." },
-  { icon: BarChart3, title: "Operational Analytics", copy: "One set of figures corporate and the plant floor both trust." },
-];

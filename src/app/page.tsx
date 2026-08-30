@@ -8,11 +8,13 @@ import { FactoryCopilotChat } from "@/components/factory-copilot-chat";
 import { SectionHint } from "@/components/section-hint";
 import { SymbolGrid } from "@/components/symbol-grid";
 import { PhotoCarousel } from "@/components/photo-carousel";
-import { modules, aiNativeCore, platformPillars, homeUseCases } from "@/lib/services";
+import { modules, aiNativeCore, platformPillars } from "@/lib/services";
+import { useCases } from "@/lib/use-cases";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const copilot = modules.find((m) => m.signature)!;
+const homeUseCases = useCases.slice(0, 4);
 
 const moduleCards = modules.map((module) => ({
   key: module.slug,
@@ -21,14 +23,6 @@ const moduleCards = modules.map((module) => ({
   kicker: module.kicker,
   badge: module.signature ? "Signature" : undefined,
   icon: <module.icon className="size-3.5" />,
-}));
-
-const useCaseCards = homeUseCases.map((item) => ({
-  key: item.title,
-  href: "/use-cases",
-  title: item.title,
-  kicker: "Use case",
-  icon: <item.icon className="size-3.5" />,
 }));
 
 export default function HomePage() {
@@ -89,7 +83,7 @@ export default function HomePage() {
 
       {/* MODULES */}
       <SectionHint hint="Explore how FactoryOS connects operations.">
-        <section className="relative bg-[#0a0b12] py-16 sm:py-20">
+        <section className="relative py-10 sm:py-14">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
               <div className="flex flex-wrap items-end justify-between gap-4">
@@ -115,7 +109,7 @@ export default function HomePage() {
 
       {/* FACTORY AI COPILOT */}
       <SectionHint hint="Try asking me a factory question.">
-        <section className="relative overflow-hidden bg-[#0a0b12] py-16 sm:py-20">
+        <section className="relative overflow-hidden py-10 sm:py-14">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(227,30,36,0.12),transparent_55%)]" />
           <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
             <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
@@ -163,7 +157,7 @@ export default function HomePage() {
 
       {/* PLATFORM */}
       <SectionHint hint="See how it all connects.">
-        <section className="relative bg-[#0a0b12] py-16 sm:py-20">
+        <section className="relative py-10 sm:py-14">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
               <p className="kicker">Platform</p>
@@ -180,19 +174,52 @@ export default function HomePage() {
 
       {/* USE CASES */}
       <SectionHint hint="Looking for a manufacturing use case?">
-        <section className="relative bg-[#0a0b12] py-16 sm:py-20">
+        <section className="relative py-10 sm:py-14">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
-              <p className="kicker">Use cases</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Intelligence Across The Factory
-              </h2>
-            </Reveal>
-            <Reveal delay={60}>
-              <div className="mt-8">
-                <PhotoCarousel items={useCaseCards} imageOffset={1} ariaPrefix="use case" />
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="kicker">Use cases</p>
+                  <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                    Real Plants. Real Figures.
+                  </h2>
+                </div>
+                <Link href="/use-cases" className="text-sm font-medium text-primary hover:underline">
+                  View all use cases →
+                </Link>
               </div>
             </Reveal>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {homeUseCases.map((item, index) => (
+                <Reveal key={item.slug} delay={index * 60}>
+                  <Link
+                    href={`/use-cases/${item.slug}`}
+                    className="card-lift surface group flex h-full flex-col p-5"
+                  >
+                    <p className="text-[11px] font-semibold tracking-wider text-primary uppercase">
+                      {item.industry}
+                    </p>
+                    <h3 className="mt-2 text-base font-semibold text-white">{item.title}</h3>
+                    <p className="mt-2 flex-1 text-xs leading-relaxed text-zinc-400">{item.capture}</p>
+                    <div className="mt-4">
+                      <div className="mb-1 flex justify-between text-[10px] text-zinc-500">
+                        <span>{item.beforeLabel}</span>
+                        <span className="text-live">{item.afterLabel}</span>
+                      </div>
+                      <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+                        <div
+                          className="bar-grow h-full rounded-full bg-gradient-to-r from-[#8B0000] to-live"
+                          style={{ width: `${item.afterPct}%` }}
+                        />
+                      </div>
+                    </div>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-primary group-hover:underline">
+                      Read the story <ArrowRight className="size-3" />
+                    </span>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
       </SectionHint>
@@ -204,21 +231,21 @@ export default function HomePage() {
           style={{ backgroundImage: `url(${asset("/images/factory-transform.jpg")})` }}
         />
         <div className="absolute inset-0 bg-[#07080d]/92" />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <Reveal>
             <p className="kicker">Trust</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               Built AI-Native. Enterprise Ready.
             </h2>
           </Reveal>
-          <div className="mt-12">
+          <div className="mt-10">
             <SymbolGrid items={aiNativeCore} columns={5} />
           </div>
         </div>
       </section>
 
       {/* REQUEST DEMO */}
-      <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20">
+      <section className="relative overflow-hidden px-4 py-10 sm:px-6 sm:py-14">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.18),transparent_60%)]" />
         <div className="surface relative mx-auto max-w-3xl px-6 py-12 text-center sm:px-14 sm:py-16">
           <h2 className="text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">
