@@ -16,8 +16,8 @@ export default function ServicesPage() {
     <div>
       <PageBanner
         kicker="Product"
-        title="One platform, twelve AI-native modules"
-        copy="Everything a plant runs on — production, workforce, quality, maintenance, warehouse, analytics, vendors, and contracts — built AI-native from the ground up, with a Copilot that sits across all of it. Not twelve logins. One factory model."
+        title="One Platform. Every AI-Native Module."
+        copy="Everything a plant runs on — production, workforce, quality, maintenance, warehouse, analytics, vendors, and contracts — built AI-native from the ground up, with a Copilot that sits across all of it. Not a dozen logins. One factory model."
         image="/images/factory-operations.jpg"
       />
       <ServiceSubnav current="hub" />
@@ -26,14 +26,15 @@ export default function ServicesPage() {
           <Reveal>
             <Link
               href={signature.href}
-              className="card-lift surface group relative block overflow-hidden p-6 sm:p-8"
+              className="card-lift glass orbis-glow group relative block overflow-hidden p-6 sm:p-8"
             >
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(227,30,36,0.16),transparent_60%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(227,30,36,0.18),transparent_60%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(139,92,246,0.14),transparent_55%)]" />
               <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                 <div className="max-w-lg">
                   <span className="kicker rounded-full border border-primary/25 bg-primary/6 px-3 py-1">
                     <signature.icon className="size-3.5" />
-                    Signature feature
+                    Signature AI layer
                   </span>
                   <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                     {signature.title}
@@ -59,11 +60,19 @@ export default function ServicesPage() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((module, index) => (
             <Reveal key={module.slug} delay={index * 60}>
-              <Link href={module.href} className="card-lift surface flex h-full flex-col p-5">
-                <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5">
+              <Link
+                href={module.href}
+                className="card-lift surface group relative flex h-full flex-col overflow-hidden p-5"
+              >
+                <span className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-primary via-ai-violet to-ai-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="orbis-glow flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 via-ai-violet/10 to-primary/5">
                   <module.icon className="size-5 text-primary" />
                 </span>
-                <p className="mt-4 text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">
+                <p className="mt-4 flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">
+                  <span className="relative flex size-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-live opacity-75" />
+                    <span className="relative inline-flex size-1.5 rounded-full bg-live" />
+                  </span>
                   {module.kicker}
                 </p>
                 <h2 className="mt-1 text-lg font-semibold tracking-tight text-white">{module.title}</h2>
@@ -85,6 +94,9 @@ export default function ServicesPage() {
                     </span>
                   ))}
                 </div>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                  View module <ArrowRight className="size-3" />
+                </span>
               </Link>
             </Reveal>
           ))}
@@ -95,12 +107,16 @@ export default function ServicesPage() {
             <p className="kicker">Present on every module</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white">The platform layer</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {platformCapabilities.map((cap) => (
-                <div key={cap.title} className="rounded-xl border border-white/10 bg-[#0a0b12] p-4">
-                  <cap.icon className="size-4 text-primary" />
-                  <h3 className="mt-3 text-sm font-semibold text-white">{cap.title}</h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">{cap.copy}</p>
-                </div>
+              {platformCapabilities.map((cap, index) => (
+                <Reveal key={cap.title} delay={index * 60}>
+                  <div className="card-lift surface h-full p-4">
+                    <span className="orbis-glow flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 via-ai-violet/10 to-primary/5">
+                      <cap.icon className="size-4 text-primary" />
+                    </span>
+                    <h3 className="mt-3 text-sm font-semibold text-white">{cap.title}</h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">{cap.copy}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
