@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
+import { AiStoryFlow } from "@/components/ai-story-flow";
 import { CtaBand, PageBanner } from "@/components/page-banner";
 import { KpiTiles } from "@/components/kpi-tiles";
 import { ModuleDiagram } from "@/components/module-widgets";
@@ -100,6 +101,8 @@ export function ServiceLayout({ slug }: { slug: string }) {
             See it on your lines
           </Link>
         </Reveal>
+
+        <AiStoryFlow title={module.title} story={module.aiStory} />
 
         <Reveal>
           <div className="mt-16 grid gap-4 border-t border-white/10 pt-10 sm:grid-cols-2">

@@ -45,6 +45,13 @@ export type ModuleWidget =
   | "vendor"
   | "contracts";
 
+export type AiStory = {
+  ask: string;
+  understand: string;
+  decide: string;
+  act: string;
+};
+
 export type Module = {
   slug: string;
   number: string;
@@ -59,6 +66,7 @@ export type Module = {
   stats: Kpi[];
   kpis: Kpi[];
   highlights: { icon: typeof Factory; title: string; copy: string }[];
+  aiStory: AiStory;
 };
 
 export const modules: Module[] = [
@@ -91,6 +99,12 @@ export const modules: Module[] = [
       { icon: ShieldCheck, title: "Factory health in one score", copy: "Safety, quality, AI risk, and production rolled into a single number executives actually check." },
       { icon: Activity, title: "AI-ranked, not just listed", copy: "Top 5 actions today, ordered by the AI — not a 40-row exception report nobody opens." },
     ],
+    aiStory: {
+      ask: "What actually needs my attention this morning?",
+      understand: "Rolls safety, quality, AI risk, and production into the 89% health score, then converts today's downtime, defects, and absenteeism into one dollar figure.",
+      decide: "Ranks the five things worth doing today by business impact, not alert volume — $9.2K is on the table before lunch.",
+      act: "Surfaces the AI actions queue on the Dashboard, one tap from a work order or a supervisor ping.",
+    },
   },
   {
     slug: "production",
@@ -121,6 +135,12 @@ export const modules: Module[] = [
       { icon: Package, title: "Materials on the same board", copy: "Overflow kits, WIP, and shortages sit next to OEE so recovery is not a second login." },
       { icon: BarChart3, title: "Shift, not overnight", copy: "Curves update with MES events. The morning meeting reads what the line already acted on." },
     ],
+    aiStory: {
+      ask: "Why is Line 3 behind plan?",
+      understand: "Cross-references OEE, MES events, and kit availability to find 18 door-latch kits short and two certified operators on the wrong line.",
+      decide: "Names the 6 of 11 at-risk orders still recoverable before the dock cutoff, and the cell that misses first if nothing moves.",
+      act: "Assigns the overflow kit and reassigns the operators — the recovery plan becomes a work order, not a meeting.",
+    },
   },
   {
     slug: "workforce",
@@ -151,6 +171,12 @@ export const modules: Module[] = [
       { icon: BadgeCheck, title: "Skills on the cell", copy: "The next certified welder or SMT tech is visible when OEE goes yellow — not after it goes red." },
       { icon: Clock, title: "Earlier than the stop", copy: "Changeovers and second-shift gaps surface hours before the line actually waits." },
     ],
+    aiStory: {
+      ask: "Which cell needs a certified skill before the shift ends?",
+      understand: "Scores crew fill against certified need for the model actually running — not headcount in the building — and sees Cell 4 trending yellow.",
+      decide: "Flags the earliest point a changeover or second-shift gap will bite, hours before the line actually waits.",
+      act: "Moves the next certified welder or SMT tech before OEE goes red, and logs the overtime it avoided.",
+    },
   },
   {
     slug: "analytics",
@@ -181,6 +207,12 @@ export const modules: Module[] = [
       { icon: Sparkles, title: "AI-written summary", copy: "A board report and an executive summary generated on demand, not assembled overnight." },
       { icon: Activity, title: "One version of the truth", copy: "Finance and the plant manager read the same OTIF and downtime numbers." },
     ],
+    aiStory: {
+      ask: "How does Plant 2 compare to Plant 1 this shift?",
+      understand: "Pulls the same OTIF, downtime, and cost figures corporate and the plant manager already trust — no separate spreadsheet per site.",
+      decide: "Points at which site is actually at risk, not just which one reported last.",
+      act: "Generates the board report and executive summary in one click — same numbers, no overnight merge.",
+    },
   },
   {
     slug: "copilot",
@@ -212,6 +244,12 @@ export const modules: Module[] = [
       { icon: Sparkles, title: "Next best action", copy: "Kit, cell, and people in one recommendation. Supervisors act from the tablet." },
       { icon: ShieldCheck, title: "Sourced answers", copy: "Every reply cites the signals it used so plant leadership can audit the AI layer." },
     ],
+    aiStory: {
+      ask: "Where's the SOP for this changeover, and who's certified to run it?",
+      understand: "Searches 128 plant documents and live operational state together, so the answer is sourced from what the floor is actually doing right now.",
+      decide: "Recommends the next best action — kit, cell, and person — not a list of links.",
+      act: "Assigns the work order, notifies the supervisor, or opens a CAPA, and cites the signals it used for every answer.",
+    },
   },
   {
     slug: "administration",
@@ -242,6 +280,12 @@ export const modules: Module[] = [
       { icon: ShieldCheck, title: "AI permissions, role by role", copy: "Every AI action scoped to who's allowed to take it, logged for audit." },
       { icon: Users, title: "Full audit trail", copy: "Every user, every change, every approval — visible to IT and compliance." },
     ],
+    aiStory: {
+      ask: "Can IT trust what the AI is allowed to touch?",
+      understand: "Maps every connector — MES, WMS, PLC historian — and every AI action to a role, before a single automation runs.",
+      decide: "Starts the pilot on one line with three feeds, not a data-lake project IT has to sign off on for a year.",
+      act: "Logs every user, change, and AI action to a full audit trail IT and compliance can actually read.",
+    },
   },
   {
     slug: "notifications",
@@ -272,6 +316,12 @@ export const modules: Module[] = [
       { icon: Activity, title: "Escalates itself", copy: "Operator to supervisor to plant head automatically if nobody acknowledges." },
       { icon: ShieldCheck, title: "Acknowledgement tracked", copy: "Open, acknowledged, closed — visible on every alert, not just the ones someone remembers." },
     ],
+    aiStory: {
+      ask: "Did anyone see the Line 3 alert?",
+      understand: "Tracks acknowledgement — open, seen, closed — on every one of today's 24 alerts, scored critical to low.",
+      decide: "Decides, in under 15 minutes, that nobody has acted and the alert needs to move up a level.",
+      act: "Escalates operator to supervisor to plant head automatically, with the full trail visible to whoever picks it up.",
+    },
   },
   {
     slug: "vendor-management",
@@ -302,6 +352,12 @@ export const modules: Module[] = [
       { icon: TriangleAlert, title: "See the risk before the shortage", copy: "A vendor sliding into a lower tier shows up before the material it supplies runs out." },
       { icon: ShieldCheck, title: "One record per supplier", copy: "Every contact, contract, and incident tied to the same vendor record — not scattered across email and spreadsheets." },
     ],
+    aiStory: {
+      ask: "Which supplier is the real risk on this order?",
+      understand: "Rolls delivery, quality holds, and responsiveness into one live score per vendor — not a year-end scorecard.",
+      decide: "Flags the vendor sliding into a lower tier before the material it supplies actually runs out.",
+      act: "Ties the incident to that vendor's single record, ready for the next sourcing or escalation call.",
+    },
   },
   {
     slug: "contract-management",
@@ -332,6 +388,12 @@ export const modules: Module[] = [
       { icon: ShieldCheck, title: "Compliance terms, surfaced", copy: "Obligations and exceptions pulled out of the document, not buried in page fourteen." },
       { icon: Plug, title: "Tied to the record it governs", copy: "Every contract linked to the vendor, customer, or module it actually governs." },
     ],
+    aiStory: {
+      ask: "What's expiring that we haven't renegotiated?",
+      understand: "Reads every active contract for renewal windows and compliance obligations most teams find on page fourteen.",
+      decide: "Surfaces the ones inside their renewal window with enough lead time to actually negotiate.",
+      act: "Links the flag to the vendor or customer record it governs, so nothing waits on a shared inbox.",
+    },
   },
   {
     slug: "quality",
@@ -362,6 +424,12 @@ export const modules: Module[] = [
       { icon: Sparkles, title: "AI root cause", copy: "Pattern and repeat-defect detection catches the fourth occurrence before it becomes a customer complaint." },
       { icon: ClipboardCheck, title: "CAPA that closes", copy: "Every corrective action tracked from open to verified, not lost in an email thread." },
     ],
+    aiStory: {
+      ask: "Is this defect a one-off or a pattern?",
+      understand: "Runs root-cause analysis across scrap, rework, and complaint cost — not just a defect percentage.",
+      decide: "Catches the repeat before the fourth occurrence, when it's still a CAPA and not a customer complaint.",
+      act: "Opens the CAPA and tracks it to verified close, not lost in an email thread.",
+    },
   },
   {
     slug: "warehouse",
@@ -392,6 +460,12 @@ export const modules: Module[] = [
       { icon: BarChart3, title: "Consumption, live", copy: "Fast-moving SKUs tracked as they're used, not reconciled at month-end." },
       { icon: ShieldCheck, title: "ABC classification built in", copy: "Critical stock flagged automatically so nobody discovers a shortage on the line." },
     ],
+    aiStory: {
+      ask: "Do we actually have the material for tomorrow's run?",
+      understand: "Splits available, reserved, in transit, and blocked by SKU, updated as production consumes it in real time.",
+      decide: "Flags the SKUs about to become a shortage before the line discovers it.",
+      act: "Puts the ABC-critical items and the release action on the same screen as the plan.",
+    },
   },
   {
     slug: "maintenance",
@@ -422,6 +496,12 @@ export const modules: Module[] = [
       { icon: Sparkles, title: "AI failure prediction", copy: "Machine 15 flagged at 82% failure probability, 14 days out — enough time to schedule, not scramble." },
       { icon: Package, title: "Spare parts on the same screen", copy: "Coverage checked before the work order is created, not after the tech arrives." },
     ],
+    aiStory: {
+      ask: "Which machine is about to break?",
+      understand: "Scores every asset 0–100 on health and remaining useful life — not just Running or Down.",
+      decide: "Names Machine 15 at 82% failure probability, 14 days out — enough runway to schedule, not scramble.",
+      act: "Checks spare-parts coverage and opens the work order before the tech is standing at a stopped line.",
+    },
   },
 ];
 
