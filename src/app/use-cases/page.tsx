@@ -10,6 +10,9 @@ import { Reveal } from "@/components/reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useCaseFilters, useCases, useCasesPortfolio } from "@/lib/use-cases";
+import { asset } from "@/lib/asset";
+
+const bannerImages = ["/images/factory-hero.jpg", "/images/factory-operations.jpg", "/images/factory-transform.jpg"];
 
 export default function UseCasesPage() {
   const [filter, setFilter] = useState<(typeof useCaseFilters)[number]>("All");
@@ -60,49 +63,58 @@ export default function UseCasesPage() {
               <Reveal key={item.slug} delay={index * 60}>
                 <Link
                   href={`/use-cases/${item.slug}`}
-                  className="card-lift surface group flex h-full flex-col p-5"
+                  className="card-lift surface group flex h-full flex-col overflow-hidden p-0"
                 >
-                  <p className="text-xs font-semibold tracking-wide text-primary uppercase">
-                    {item.industry}
-                  </p>
-                  <h2 className="mt-2 text-lg font-semibold text-white">{item.title}</h2>
-                  <p className="mt-2 flex-1 text-sm font-medium text-zinc-200">{item.capture}</p>
-                  <div className="mt-4">
-                    <div className="mb-1 flex justify-between text-[10px] text-zinc-500">
-                      <span>{item.beforeLabel}</span>
-                      <span className="text-live">{item.afterLabel}</span>
-                    </div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
-                      <div
-                        className="bar-grow h-full rounded-full bg-gradient-to-r from-[#8B0000] to-live"
-                        style={{ width: `${item.afterPct}%` }}
-                      />
-                    </div>
+                  <div className="relative h-28 shrink-0 overflow-hidden">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                      style={{ backgroundImage: `url(${asset(bannerImages[index % bannerImages.length])})` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#101119] via-[#101119]/40 to-transparent" />
+                    <p className="absolute bottom-2 left-4 text-xs font-semibold tracking-wide text-ai-cyan uppercase">
+                      {item.industry}
+                    </p>
                   </div>
-                  <div className="mt-4 grid grid-cols-3 gap-1.5">
-                    {item.kpis.slice(0, 3).map((kpi, i) => (
-                      <div
-                        key={kpi.label}
-                        className="kpi-pop rounded-lg border border-white/10 bg-black/30 px-2 py-1.5"
-                        style={{ animationDelay: `${i * 50}ms` }}
-                      >
-                        <p
-                          className={cn(
-                            "text-sm font-semibold",
-                            kpi.tone === "live" && "text-live",
-                            kpi.tone === "risk" && "text-primary",
-                            (!kpi.tone || kpi.tone === "neutral") && "text-white"
-                          )}
-                        >
-                          {kpi.value}
-                        </p>
-                        <p className="text-[10px] leading-tight text-zinc-500">{kpi.label}</p>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h2 className="text-lg font-semibold text-white">{item.title}</h2>
+                    <p className="mt-2 flex-1 text-sm font-medium text-zinc-200">{item.capture}</p>
+                    <div className="mt-4">
+                      <div className="mb-1 flex justify-between text-[10px] text-zinc-500">
+                        <span>{item.beforeLabel}</span>
+                        <span className="text-live">{item.afterLabel}</span>
                       </div>
-                    ))}
+                      <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+                        <div
+                          className="bar-grow h-full rounded-full bg-gradient-to-r from-[#8B0000] to-live"
+                          style={{ width: `${item.afterPct}%` }}
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-4 grid grid-cols-3 gap-1.5">
+                      {item.kpis.slice(0, 3).map((kpi, i) => (
+                        <div
+                          key={kpi.label}
+                          className="kpi-pop rounded-lg border border-white/10 bg-black/30 px-2 py-1.5"
+                          style={{ animationDelay: `${i * 50}ms` }}
+                        >
+                          <p
+                            className={cn(
+                              "text-sm font-semibold",
+                              kpi.tone === "live" && "text-live",
+                              kpi.tone === "risk" && "text-primary",
+                              (!kpi.tone || kpi.tone === "neutral") && "text-white"
+                            )}
+                          >
+                            {kpi.value}
+                          </p>
+                          <p className="text-[10px] leading-tight text-zinc-500">{kpi.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary group-hover:underline">
+                      Read the full story <ArrowRight className="size-3.5" />
+                    </span>
                   </div>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary group-hover:underline">
-                    Read the full story <ArrowRight className="size-3.5" />
-                  </span>
                 </Link>
               </Reveal>
             ))}

@@ -1,12 +1,12 @@
-import { Sparkles } from "lucide-react";
+import { BrainCircuit } from "lucide-react";
 
-const signals = ["Machine signals", "MES events", "Attendance", "Quality checks"];
-const actions = ["Reassign operator", "Flag the risk", "Schedule service", "Notify supervisor"];
+const signals = ["Sensors & Machines", "MES & Systems", "People & Processes", "Quality & Events"];
+const actions = ["Real-time Insights", "Predict & Detect", "Intelligent Decisions", "Action & Execution"];
 
 export function HeroIntelligenceVisual() {
   return (
-    <div className="glass orbis-glow relative overflow-hidden rounded-2xl p-5 sm:p-6">
-      <div className="drift-slow pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-primary/25 blur-3xl" />
+    <div className="glass relative overflow-hidden rounded-2xl p-5 shadow-[0_0_0_1px_rgb(56_189_248/18%),0_20px_60px_rgb(139_92_246/16%)] sm:p-6">
+      <div className="drift-slow pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-ai-cyan/20 blur-3xl" />
       <div className="drift-slow-delayed pointer-events-none absolute -bottom-12 -left-10 h-28 w-28 rounded-full bg-ai-violet/20 blur-3xl" />
 
       <svg
@@ -85,11 +85,11 @@ export function HeroIntelligenceVisual() {
         <div className="relative flex shrink-0 items-center justify-center">
           <span className="absolute inline-flex size-16 animate-ping rounded-full bg-ai-violet/25" />
           <span
-            className="absolute inline-flex size-16 animate-ping rounded-full bg-primary/20"
+            className="absolute inline-flex size-16 animate-ping rounded-full bg-ai-cyan/20"
             style={{ animationDelay: "0.6s" }}
           />
-          <span className="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-ai-violet via-primary to-[#8B0000] shadow-[0_8px_28px_rgb(139_92_246_/_35%)]">
-            <Sparkles className="size-6 text-white" />
+          <span className="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-ai-cyan via-ai-violet to-ai-cyan shadow-[0_8px_28px_rgb(139_92_246/35%)]">
+            <BrainCircuit className="size-6 text-white" />
           </span>
         </div>
 
@@ -97,11 +97,11 @@ export function HeroIntelligenceVisual() {
           {actions.map((a, i) => (
             <div key={a} className="relative">
               <span
-                className="particle-flow absolute top-1/2 -left-2 hidden size-1 rounded-full bg-primary sm:block"
+                className="particle-flow absolute top-1/2 -left-2 hidden size-1 rounded-full bg-ai-violet sm:block"
                 style={{ ["--particle-distance" as string]: "10px", animationDelay: `${i * 0.35}s` }}
               />
               <div
-                className="float-card truncate rounded-lg border border-primary/25 bg-primary/8 px-2.5 py-2 text-right text-[11px] text-zinc-100 sm:text-xs"
+                className="float-card truncate rounded-lg border border-ai-violet/25 bg-ai-violet/8 px-2.5 py-2 text-right text-[11px] text-zinc-100 sm:text-xs"
                 style={{ animationDelay: `${i * 0.4}s` }}
               >
                 {a}

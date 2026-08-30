@@ -9,6 +9,8 @@ import { SectionHint } from "@/components/section-hint";
 import { SymbolGrid } from "@/components/symbol-grid";
 import { PhotoCarousel } from "@/components/photo-carousel";
 import { ModuleDiagram } from "@/components/module-widgets";
+import { ProductMockup } from "@/components/product-mockup";
+import { CopilotSteps } from "@/components/copilot-steps";
 import { modules, aiNativeCore, platformPillars } from "@/lib/services";
 import { useCases } from "@/lib/use-cases";
 import { buttonVariants } from "@/components/ui/button";
@@ -25,6 +27,8 @@ const moduleCards = modules.map((module) => ({
   badge: module.signature ? "Signature" : undefined,
   icon: <module.icon className="size-3.5" />,
 }));
+
+const caseBannerImages = ["/images/factory-hero.jpg", "/images/factory-operations.jpg", "/images/factory-transform.jpg"];
 
 const showcaseSlugs = ["dashboard", "warehouse", "analytics"];
 const showcaseModules = showcaseSlugs
@@ -68,7 +72,7 @@ export default function HomePage() {
                     "h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 text-sm font-semibold glow-cta hover:brightness-110"
                   )}
                 >
-                  See it on your lines
+                  See It On Your Lines
                   <ArrowRight className="size-4" />
                 </Link>
                 <Link
@@ -159,7 +163,7 @@ export default function HomePage() {
             <div className="glass orbis-glow relative overflow-hidden p-6 sm:p-10">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(227,30,36,0.16),transparent_55%)]" />
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(139,92,246,0.14),transparent_55%)]" />
-              <div className="relative grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+              <div className="relative grid gap-8 lg:grid-cols-[0.8fr_1fr_0.55fr] lg:items-start">
                 <Reveal>
                   <span className="kicker rounded-full border border-primary/25 bg-primary/8 px-3 py-1">
                     <copilot.icon className="size-3.5" />
@@ -171,23 +175,22 @@ export default function HomePage() {
                   <p className="mt-2 text-lg text-zinc-200">
                     One intelligent assistant for the factory.
                   </p>
-                  <p className="mt-3 max-w-md text-zinc-400">
-                    Ask a question in plain language — Copilot draws on operations,
-                    knowledge, people, and assets for a sourced answer, then
-                    carries out the action once a person confirms it.
-                  </p>
-                  <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold tracking-wide uppercase">
-                    <span className="text-gradient-intelligence">Ask</span>
-                    <ArrowRight className="size-3.5 text-zinc-600" />
-                    <span className="text-gradient-intelligence">Understand</span>
-                    <ArrowRight className="size-3.5 text-zinc-600" />
-                    <span className="text-gradient-intelligence">Decide</span>
-                    <ArrowRight className="size-3.5 text-zinc-600" />
-                    <span className="text-gradient-intelligence">Act</span>
-                  </div>
+                  <ul className="mt-6 space-y-2.5 text-sm text-zinc-300">
+                    {[
+                      "Understands your operations",
+                      "Finds what matters",
+                      "Recommends the right actions",
+                      "Helps your team act faster",
+                    ].map((c) => (
+                      <li key={c} className="flex items-center gap-2.5">
+                        <span className="size-1.5 shrink-0 rounded-full bg-gradient-to-br from-ai-cyan to-ai-violet" />
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
                   <div className="mt-6">
                     <Link
-                      href={copilot.href}
+                      href="/ai"
                       className="text-sm font-medium text-primary hover:underline"
                     >
                       Meet the full Copilot →
@@ -196,6 +199,9 @@ export default function HomePage() {
                 </Reveal>
                 <Reveal delay={100}>
                   <FactoryCopilotChat />
+                </Reveal>
+                <Reveal delay={150}>
+                  <CopilotSteps />
                 </Reveal>
               </div>
             </div>
@@ -213,8 +219,13 @@ export default function HomePage() {
                 One Intelligent Platform For Modern Manufacturing
               </h2>
             </Reveal>
-            <div className="mt-12">
-              <SymbolGrid items={platformPillars} columns={5} />
+            <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+              <div>
+                <SymbolGrid items={platformPillars} columns={2} />
+              </div>
+              <Reveal delay={100}>
+                <ProductMockup />
+              </Reveal>
             </div>
           </div>
         </section>
@@ -242,28 +253,35 @@ export default function HomePage() {
                 <Reveal key={item.slug} delay={index * 60}>
                   <Link
                     href={`/use-cases/${item.slug}`}
-                    className="card-lift surface group flex h-full flex-col p-5"
+                    className="card-lift group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 p-5"
                   >
-                    <p className="text-[11px] font-semibold tracking-wider text-primary uppercase">
-                      {item.industry}
-                    </p>
-                    <h3 className="mt-2 text-base font-semibold text-white">{item.title}</h3>
-                    <p className="mt-2 flex-1 text-xs leading-relaxed text-zinc-400">{item.capture}</p>
-                    <div className="mt-4">
-                      <div className="mb-1 flex justify-between text-[10px] text-zinc-500">
-                        <span>{item.beforeLabel}</span>
-                        <span className="text-live">{item.afterLabel}</span>
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                      style={{ backgroundImage: `url(${asset(caseBannerImages[index % caseBannerImages.length])})` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/70 to-black/35" />
+                    <div className="relative flex h-full flex-col">
+                      <p className="text-[11px] font-semibold tracking-wider text-ai-cyan uppercase">
+                        {item.industry}
+                      </p>
+                      <h3 className="mt-2 text-base font-semibold text-white">{item.title}</h3>
+                      <p className="mt-2 flex-1 text-xs leading-relaxed text-zinc-300">{item.capture}</p>
+                      <div className="mt-4">
+                        <div className="mb-1 flex justify-between text-[10px] text-zinc-400">
+                          <span>{item.beforeLabel}</span>
+                          <span className="text-live">{item.afterLabel}</span>
+                        </div>
+                        <div className="h-1.5 overflow-hidden rounded-full bg-white/15">
+                          <div
+                            className="bar-grow h-full rounded-full bg-gradient-to-r from-ai-violet to-live"
+                            style={{ width: `${item.afterPct}%` }}
+                          />
+                        </div>
                       </div>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
-                        <div
-                          className="bar-grow h-full rounded-full bg-gradient-to-r from-[#8B0000] to-live"
-                          style={{ width: `${item.afterPct}%` }}
-                        />
-                      </div>
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-ai-cyan group-hover:underline">
+                        Read the story <ArrowRight className="size-3" />
+                      </span>
                     </div>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-primary group-hover:underline">
-                      Read the story <ArrowRight className="size-3" />
-                    </span>
                   </Link>
                 </Reveal>
               ))}
@@ -300,11 +318,11 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(227,30,36,0.18),transparent_60%)]" />
         <div className="surface relative mx-auto max-w-3xl px-6 py-12 text-center sm:px-14 sm:py-16">
           <h2 className="text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">
-            Build The Factory That Acts On Intelligence.
+            See Intelligence In Action.
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-zinc-400">
-            See how FactoryOS can turn operational data into connected
-            intelligence and action.
+            Discover how FactoryOS can transform the way your teams operate,
+            decide and act.
           </p>
           <Link
             href="/request-demo"
@@ -313,7 +331,7 @@ export default function HomePage() {
               "glow-cta mt-8 inline-flex h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-8 font-semibold"
             )}
           >
-            See it on your lines
+            See It On Your Lines
             <ArrowRight className="size-4" />
           </Link>
         </div>

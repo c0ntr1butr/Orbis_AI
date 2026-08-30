@@ -138,7 +138,7 @@ export default function ServicesPage() {
               "glow-cta relative mt-6 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold"
             )}
           >
-            See it on your lines
+            See It On Your Lines
           </Link>
         </div>
       </div>

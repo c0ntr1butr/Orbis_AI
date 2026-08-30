@@ -1,19 +1,27 @@
-export function SparkLine({ className = "" }: { className?: string }) {
+export function SparkLine({
+  className = "",
+  color = "#E31E24",
+  gradientId = "orbisSparkFill",
+}: {
+  className?: string;
+  color?: string;
+  gradientId?: string;
+}) {
   return (
     <svg viewBox="0 0 200 72" className={className} fill="none" aria-hidden>
       <defs>
-        <linearGradient id="orbisSparkFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#E31E24" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="#E31E24" stopOpacity="0" />
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.28" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
         </linearGradient>
       </defs>
       <path
         d="M0 52 C 24 48, 36 58, 50 44 C 68 26, 82 38, 100 28 C 118 18, 132 30, 150 22 C 168 14, 184 20, 200 16 L 200 72 L 0 72 Z"
-        fill="url(#orbisSparkFill)"
+        fill={`url(#${gradientId})`}
       />
       <path
         d="M0 52 C 24 48, 36 58, 50 44 C 68 26, 82 38, 100 28 C 118 18, 132 30, 150 22 C 168 14, 184 20, 200 16"
-        stroke="#E31E24"
+        stroke={color}
         strokeWidth="2.2"
         strokeLinecap="round"
       />

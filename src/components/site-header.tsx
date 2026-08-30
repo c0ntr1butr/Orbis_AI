@@ -13,7 +13,9 @@ const nav = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Product" },
   { href: "/use-cases", label: "Use Cases" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/ai", label: "AI" },
+  { href: "/company", label: "Company" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -70,7 +72,7 @@ export function SiteHeader() {
               "h-10 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-5 text-sm font-semibold text-white glow-cta hover:brightness-110"
             )}
           >
-            See it on your lines
+            See It On Your Lines
           </Link>
         </div>
 
@@ -109,7 +111,7 @@ export function SiteHeader() {
                 "mt-3 h-11 rounded-full bg-gradient-to-r from-[#8B0000] to-primary font-semibold"
               )}
             >
-              See it on your lines
+              See It On Your Lines
             </Link>
           </nav>
         </div>

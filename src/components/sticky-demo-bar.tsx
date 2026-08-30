@@ -13,7 +13,7 @@ export function StickyDemoBar() {
           "h-11 w-full rounded-full bg-gradient-to-r from-[#8B0000] to-primary font-semibold glow-cta"
         )}
       >
-        See it on your lines
+        See It On Your Lines
       </Link>
     </div>
   );

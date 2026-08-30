@@ -23,7 +23,7 @@ const RULES: Rule[] = [
     match: /price|pricing|cost|how much/i,
     reply:
       "Pricing depends on the modules and number of lines in your pilot — the fastest way to get a real number is a short working session where we scope it against your plant.",
-    cta: { label: "See it on your lines", href: "/request-demo" },
+    cta: { label: "See It On Your Lines", href: "/request-demo" },
   },
   {
     match: /what (is|'s) factoryos|about factoryos/i,
@@ -52,7 +52,7 @@ const RULES: Rule[] = [
     match: /demo|trial|try it|see it/i,
     reply:
       "A FactoryOS session is the fastest way to see this on your own lines — the closest thing to trying the product before it's installed anywhere.",
-    cta: { label: "See it on your lines", href: "/request-demo" },
+    cta: { label: "See It On Your Lines", href: "/request-demo" },
   },
   {
     match: /secur|governance|complian|audit/i,
@@ -73,6 +73,8 @@ const ROUTE_HINTS: Record<string, string> = {
   "/": "Want to see how FactoryOS works?",
   "/services": "Explore how FactoryOS connects operations.",
   "/use-cases": "Looking for a manufacturing use case?",
+  "/ai": "Want to see Copilot in action?",
+  "/company": "Curious about Orbis AI Technologies?",
   "/contact": "Ready to explore FactoryOS?",
   "/request-demo": "Ready to explore FactoryOS?",
 };

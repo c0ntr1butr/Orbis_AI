@@ -513,17 +513,17 @@ export const platformCapabilities = [
 ];
 
 export const aiNativeCore = [
-  { icon: Sparkles, title: "AI-Native by Design", copy: "Intelligence built into every module." },
-  { icon: Cloud, title: "Enterprise Cloud", copy: "Built for plant-level operations and scale." },
-  { icon: Lock, title: "Secure by Design", copy: "Encryption, RBAC, and isolated enterprise environments." },
-  { icon: Scale, title: "Integrity & Governance", copy: "AI actions scoped, logged, and auditable." },
-  { icon: Plug, title: "API-Ready Integrations", copy: "Connect with MES, WMS, ERP, and industrial systems." },
+  { icon: Sparkles, title: "AI-Native by Design", copy: "Intelligence built into every module.", tone: "violet" as const },
+  { icon: Cloud, title: "Enterprise Cloud", copy: "Built for plant-level operations and scale.", tone: "cyan" as const },
+  { icon: Lock, title: "Secure by Design", copy: "Encryption, RBAC, and isolated enterprise environments.", tone: "cyan" as const },
+  { icon: Scale, title: "Integrity & Governance", copy: "AI actions scoped, logged, and auditable.", tone: "primary" as const },
+  { icon: Plug, title: "API-Ready Integrations", copy: "Connect with MES, WMS, ERP, and industrial systems.", tone: "violet" as const },
 ];
 
 export const platformPillars = [
-  { icon: Network, title: "Connected Operations", copy: "Production, workforce, quality, maintenance, and warehouse on one live plant model — not five systems that don't talk to each other." },
-  { icon: LayoutGrid, title: "AI-Native Modules", copy: "Intelligence built into every module from day one, not a chatbot layered on top of a legacy dashboard." },
-  { icon: Bot, title: "Factory AI Copilot", copy: "Ask a question in plain language and get a sourced answer that can act — across the factory, not one screen." },
-  { icon: Workflow, title: "Intelligent Workflows", copy: "Recommendations become actions — a work order, a reassignment, an alert — without leaving the platform." },
-  { icon: Scale, title: "Enterprise Governance", copy: "Every AI action scoped, logged, and auditable, with human oversight where it matters." },
+  { icon: Network, title: "Connected Operations", copy: "Production, workforce, quality, maintenance, and warehouse on one live plant model — not five systems that don't talk to each other.", tone: "cyan" as const },
+  { icon: LayoutGrid, title: "AI-Native Modules", copy: "Intelligence built into every module from day one, not a chatbot layered on top of a legacy dashboard.", tone: "violet" as const },
+  { icon: Bot, title: "Factory AI Copilot", copy: "Ask a question in plain language and get a sourced answer that can act — across the factory, not one screen.", tone: "cyan" as const },
+  { icon: Workflow, title: "Intelligent Workflows", copy: "Recommendations become actions — a work order, a reassignment, an alert — without leaving the platform.", tone: "violet" as const },
+  { icon: BarChart3, title: "Enterprise Intelligence", copy: "Plant and portfolio-level reporting, generated on demand, not assembled overnight.", tone: "cyan" as const },
 ];

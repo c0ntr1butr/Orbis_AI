@@ -98,7 +98,7 @@ export function ServiceLayout({ slug }: { slug: string }) {
               "glow-cta mt-10 h-12 rounded-full bg-gradient-to-r from-[#8B0000] to-primary px-6 font-semibold"
             )}
           >
-            See it on your lines
+            See It On Your Lines
           </Link>
         </Reveal>
 

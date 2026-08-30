@@ -1,14 +1,10 @@
 "use client";
 
 const items = [
-  "Line 3 · kit 7B pulled from overflow — 2 orders recovered",
-  "Body shop · certified welder moving to Cell 4 (yellow OEE)",
-  "Shift B · crew fill 92% vs certified need",
-  "Copilot · material shortage + workforce gap on the same ticket",
-  "OTIF · 6 of 11 at-risk orders still recoverable this shift",
-  "SMT · changeover held — fill-rate risk flagged 4 hours early",
-  "Rail cell · downtime yellow, next certified skill already en route",
-  "FactoryOS · production and workforce now on one plant model",
+  "FactoryOS is operational across production lines",
+  "AI Copilot active",
+  "Systems healthy",
+  "All operations synchronized",
 ];
 
 export function LiveTicker() {
