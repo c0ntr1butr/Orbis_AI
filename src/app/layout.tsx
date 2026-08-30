@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 
+import { AmbientBackground } from "@/components/ambient-background";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { LiveTicker } from "@/components/live-ticker";
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Orbis FactoryOS",
   },
   description:
-    "Orbis FactoryOS is the AI-native operating system for manufacturing — twelve connected modules and a Factory AI Copilot on one plant model.",
+    "Orbis FactoryOS is the AI-native operating system for manufacturing — connected modules and a Factory AI Copilot on one plant model.",
   icons: { icon: "/favicon.svg" },
 };
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <AmbientBackground />
         <SiteHeader />
         <LiveTicker />
         <main className="flex-1 pb-16 md:pb-0">{children}</main>

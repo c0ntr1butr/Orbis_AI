@@ -60,12 +60,9 @@ export default function ServicesPage() {
           {rest.map((module, index) => (
             <Reveal key={module.slug} delay={index * 60}>
               <Link href={module.href} className="card-lift surface flex h-full flex-col p-5">
-                <div className="flex items-start justify-between">
-                  <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5">
-                    <module.icon className="size-5 text-primary" />
-                  </span>
-                  <span className="font-mono text-xs text-zinc-400">{module.number}</span>
-                </div>
+                <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5">
+                  <module.icon className="size-5 text-primary" />
+                </span>
                 <p className="mt-4 text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">
                   {module.kicker}
                 </p>

@@ -8,6 +8,7 @@ import { FactoryCopilotChat } from "@/components/factory-copilot-chat";
 import { SectionHint } from "@/components/section-hint";
 import { SymbolGrid } from "@/components/symbol-grid";
 import { PhotoCarousel } from "@/components/photo-carousel";
+import { ModuleDiagram } from "@/components/module-widgets";
 import { modules, aiNativeCore, platformPillars } from "@/lib/services";
 import { useCases } from "@/lib/use-cases";
 import { buttonVariants } from "@/components/ui/button";
@@ -24,6 +25,11 @@ const moduleCards = modules.map((module) => ({
   badge: module.signature ? "Signature" : undefined,
   icon: <module.icon className="size-3.5" />,
 }));
+
+const showcaseSlugs = ["dashboard", "warehouse", "analytics"];
+const showcaseModules = showcaseSlugs
+  .map((slug) => modules.find((m) => m.slug === slug))
+  .filter((m): m is (typeof modules)[number] => Boolean(m));
 
 export default function HomePage() {
   return (
@@ -50,9 +56,9 @@ export default function HomePage() {
                 <span className="text-gradient-orbis">With Intelligence</span>!
               </h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
-                FactoryOS connects manufacturing operations, people, assets, and
-                knowledge into one intelligent platform — turning factory data
-                into better decisions and productive action.
+                FactoryOS connects operations, people, assets, and knowledge
+                into one AI-native platform — turning factory data into
+                intelligent decisions and productive action.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <Link
@@ -107,49 +113,91 @@ export default function HomePage() {
         </section>
       </SectionHint>
 
+      {/* PRODUCT SHOWCASE */}
+      <SectionHint hint="This is what's actually running on the screen.">
+        <section className="relative py-10 sm:py-14">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal>
+              <p className="kicker">Inside FactoryOS</p>
+              <h2 className="mt-2 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                The Product, Not A Pitch Deck.
+              </h2>
+              <p className="mt-3 max-w-xl text-zinc-400">
+                Real widgets from the live platform — the same ones a plant
+                manager sees, not stock screenshots.
+              </p>
+            </Reveal>
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              {showcaseModules.map((module, i) => (
+                <Reveal key={module.slug} delay={i * 100}>
+                  <Link
+                    href={module.href}
+                    className="card-lift surface group flex h-full flex-col p-5"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="flex items-center gap-2 text-xs font-semibold tracking-wide text-zinc-400 uppercase">
+                        <module.icon className="size-3.5 text-primary" />
+                        {module.title}
+                      </span>
+                      <ArrowRight className="size-3.5 text-zinc-600 transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                    </div>
+                    <div className="mt-4 flex-1">
+                      <ModuleDiagram widget={module.widget} />
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      </SectionHint>
+
       {/* FACTORY AI COPILOT */}
       <SectionHint hint="Try asking me a factory question.">
         <section className="relative overflow-hidden py-10 sm:py-14">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(227,30,36,0.12),transparent_55%)]" />
-          <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-              <Reveal>
-                <span className="kicker rounded-full border border-primary/25 bg-primary/8 px-3 py-1">
-                  <copilot.icon className="size-3.5" />
-                  Signature AI layer
-                </span>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                  Meet Factory AI Copilot
-                </h2>
-                <p className="mt-2 text-lg text-zinc-200">
-                  One intelligent assistant for the factory.
-                </p>
-                <p className="mt-3 max-w-md text-zinc-400">
-                  Ask a question in plain language — Copilot draws on operations,
-                  knowledge, people, and assets for a sourced answer, then
-                  carries out the action once a person confirms it.
-                </p>
-                <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold tracking-wide text-primary uppercase">
-                  <span>Ask</span>
-                  <ArrowRight className="size-3.5 text-zinc-600" />
-                  <span>Understand</span>
-                  <ArrowRight className="size-3.5 text-zinc-600" />
-                  <span>Decide</span>
-                  <ArrowRight className="size-3.5 text-zinc-600" />
-                  <span>Act</span>
-                </div>
-                <div className="mt-6">
-                  <Link
-                    href={copilot.href}
-                    className="text-sm font-medium text-primary hover:underline"
-                  >
-                    Meet the full Copilot →
-                  </Link>
-                </div>
-              </Reveal>
-              <Reveal delay={100}>
-                <FactoryCopilotChat />
-              </Reveal>
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="glass orbis-glow relative overflow-hidden p-6 sm:p-10">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(227,30,36,0.16),transparent_55%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(139,92,246,0.14),transparent_55%)]" />
+              <div className="relative grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+                <Reveal>
+                  <span className="kicker rounded-full border border-primary/25 bg-primary/8 px-3 py-1">
+                    <copilot.icon className="size-3.5" />
+                    Signature AI layer
+                  </span>
+                  <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                    Meet Factory AI Copilot
+                  </h2>
+                  <p className="mt-2 text-lg text-zinc-200">
+                    One intelligent assistant for the factory.
+                  </p>
+                  <p className="mt-3 max-w-md text-zinc-400">
+                    Ask a question in plain language — Copilot draws on operations,
+                    knowledge, people, and assets for a sourced answer, then
+                    carries out the action once a person confirms it.
+                  </p>
+                  <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold tracking-wide uppercase">
+                    <span className="text-gradient-intelligence">Ask</span>
+                    <ArrowRight className="size-3.5 text-zinc-600" />
+                    <span className="text-gradient-intelligence">Understand</span>
+                    <ArrowRight className="size-3.5 text-zinc-600" />
+                    <span className="text-gradient-intelligence">Decide</span>
+                    <ArrowRight className="size-3.5 text-zinc-600" />
+                    <span className="text-gradient-intelligence">Act</span>
+                  </div>
+                  <div className="mt-6">
+                    <Link
+                      href={copilot.href}
+                      className="text-sm font-medium text-primary hover:underline"
+                    >
+                      Meet the full Copilot →
+                    </Link>
+                  </div>
+                </Reveal>
+                <Reveal delay={100}>
+                  <FactoryCopilotChat />
+                </Reveal>
+              </div>
             </div>
           </div>
         </section>
@@ -227,20 +275,23 @@ export default function HomePage() {
       {/* TRUST / ENTERPRISE */}
       <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-25"
+          className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{ backgroundImage: `url(${asset("/images/factory-transform.jpg")})` }}
         />
-        <div className="absolute inset-0 bg-[#07080d]/92" />
+        <div className="absolute inset-0 bg-[#07080d]/94" />
         <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <Reveal>
-            <p className="kicker">Trust</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              Built AI-Native. Enterprise Ready.
-            </h2>
+            <div className="glass relative overflow-hidden p-6 sm:p-10">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(56,189,248,0.1),transparent_55%)]" />
+              <p className="kicker">Trust</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                Built AI-Native. Enterprise Ready.
+              </h2>
+              <div className="relative mt-10">
+                <SymbolGrid items={aiNativeCore} columns={5} />
+              </div>
+            </div>
           </Reveal>
-          <div className="mt-10">
-            <SymbolGrid items={aiNativeCore} columns={5} />
-          </div>
         </div>
       </section>
 
@@ -252,8 +303,8 @@ export default function HomePage() {
             Build The Factory That Acts On Intelligence.
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-zinc-400">
-            Move beyond fragmented reports and disconnected workflows. Turn
-            factory information into intelligent action.
+            See how FactoryOS can turn operational data into connected
+            intelligence and action.
           </p>
           <Link
             href="/request-demo"

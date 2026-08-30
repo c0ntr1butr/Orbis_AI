@@ -128,10 +128,10 @@ export function OrbisAssistant() {
   return (
     <div className="fixed right-5 bottom-24 z-60 flex flex-col items-end md:bottom-5">
       {open && (
-        <div className="animate-in fade-in zoom-in-95 slide-in-from-bottom-2 mb-3 flex w-[19rem] flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0d0e16]/55 shadow-[0_24px_60px_rgb(0_0_0_/_55%)] backdrop-blur-2xl duration-200 sm:w-80">
+        <div className="animate-in fade-in zoom-in-95 slide-in-from-bottom-2 mb-3 flex w-[19rem] flex-col overflow-hidden rounded-2xl border border-ai-violet/20 bg-[#0d0e16]/55 shadow-[0_24px_60px_rgb(0_0_0_/_55%),0_0_0_1px_rgb(139_92_246_/_8%)] backdrop-blur-2xl duration-200 sm:w-80">
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
             <p className="flex items-center gap-2 text-sm font-semibold text-white">
-              <Sparkles className="size-4 text-primary" />
+              <Sparkles className="size-4 text-ai-cyan" />
               Orbis AI
             </p>
             <button
@@ -234,7 +234,7 @@ export function OrbisAssistant() {
         type="button"
         onClick={toggle}
         aria-label={open ? "Close Orbis AI assistant" : "Open Orbis AI assistant"}
-        className="flex size-13 items-center justify-center rounded-full bg-gradient-to-r from-[#8B0000] to-primary text-white shadow-[0_10px_30px_rgb(227_30_36_/_45%)] transition-transform hover:scale-105"
+        className="flex size-13 items-center justify-center rounded-full bg-gradient-to-br from-ai-violet via-primary to-[#8B0000] text-white shadow-[0_10px_30px_rgb(139_92_246_/_35%)] transition-transform hover:scale-105"
       >
         {open ? <X className="size-5" /> : <MessageCircle className="size-5.5" />}
       </button>

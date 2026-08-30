@@ -42,6 +42,8 @@
   --color-orbis: var(--orbis);
   --color-orbis-deep: var(--orbis-deep);
   --color-live: var(--live);
+  --color-ai-cyan: var(--ai-cyan);
+  --color-ai-violet: var(--ai-violet);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -87,6 +89,8 @@
   --orbis: #e31e24;
   --orbis-deep: #8b0000;
   --live: #22c55e;
+  --ai-cyan: #38bdf8;
+  --ai-violet: #8b5cf6;
 }
 
 @layer base {
@@ -98,11 +102,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image:
-      radial-gradient(ellipse 70% 45% at 15% -10%, rgb(227 30 36 / 12%), transparent 60%),
-      radial-gradient(ellipse 55% 40% at 100% 0%, rgb(255 255 255 / 5%), transparent 60%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
   }
   ::selection {
     background: rgb(227 30 36 / 35%);
@@ -123,6 +122,15 @@
   to {
     background-position: -220% 0;
   }
+}
+
+@utility text-gradient-intelligence {
+  background-image: linear-gradient(90deg, #38bdf8 0%, #8b5cf6 50%, #38bdf8 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shimmer 7s linear infinite;
 }
 
 @utility kicker {
@@ -193,6 +201,47 @@
   50% {
     opacity: 0.85;
   }
+}
+
+@keyframes drift-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.08);
+    opacity: 0.8;
+  }
+}
+
+.drift-slow {
+  animation: drift-slow 22s ease-in-out infinite;
+}
+
+.drift-slow-delayed {
+  animation: drift-slow 26s ease-in-out 3s infinite;
+}
+
+@keyframes particle-flow {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--particle-distance, 24px));
+    opacity: 0;
+  }
+}
+
+.particle-flow {
+  animation: particle-flow 1.8s ease-in-out infinite;
 }
 
 .hero-zoom {
@@ -298,7 +347,11 @@
   .spark-draw,
   .kpi-pop,
   .bar-grow,
-  .text-gradient-orbis {
+  .text-gradient-orbis,
+  .text-gradient-intelligence,
+  .drift-slow,
+  .drift-slow-delayed,
+  .particle-flow {
     animation: none;
   }
   .card-lift:hover,
